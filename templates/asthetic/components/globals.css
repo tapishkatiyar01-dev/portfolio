@@ -152,9 +152,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .theme-toggle.is-light span:first-child { background: var(--a-brass); color: #fff; transform: translateX(1px); }
 .theme-toggle.is-light span:last-child { background: transparent; color: var(--a-muted); transform: translateX(-1px); }
 .aesthetic-talk, .aesthetic-button { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 44px; border: 1px solid var(--a-brass); border-radius: 6px; padding: .7rem 1rem; background: transparent; color: var(--a-text); font: 600 var(--a-label-size) var(--a-sans); letter-spacing: .08em; text-transform: uppercase; transition: background .25s ease, color .25s ease, transform .25s ease; }
-.aesthetic-button-small { padding: .45rem .75rem; font-size: .6875rem; }
-.aesthetic-button-medium { padding: .7rem 1rem; font-size: var(--a-label-size); }
-.aesthetic-button-large { padding: .85rem 1.15rem; font-size: .875rem; }
 .aesthetic-talk:hover, .aesthetic-button:hover { background: var(--a-brass); color: #fff; transform: translateY(-2px); }
 .aesthetic-button-primary { background: var(--a-brass); color: #fff; }
 .aesthetic-menu {
@@ -220,7 +217,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .aesthetic-tabs button.is-active::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 2px; background: var(--a-brass); content: ''; }
 .aesthetic-tab-panel { display: grid; gap: 1.25rem; }
 .aesthetic-title-bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; padding: 1rem clamp(1.25rem, 3vw, 2rem); border-bottom: 1px solid var(--a-line); color: var(--a-brass-soft); font: 400 1rem var(--a-serif); letter-spacing: .02em; text-transform: uppercase; }
-.aesthetic-dots, .aesthetic-actions { display: none; }
 
 .aesthetic-about-shell { display: grid; grid-template-columns: minmax(190px, .55fr) minmax(0, 1.45fr); gap: clamp(2rem, 7vw, 7rem); align-items: start; }
 .aesthetic-about-window { position: relative; background-image: linear-gradient(90deg, rgba(32, 43, 46, .96), rgba(32, 43, 46, .78)), url('/asthetic/asthetic05.png'); background-position: center; background-size: cover; }
@@ -255,12 +251,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .aesthetic-skill-name { color: var(--a-text); font: 500 .95rem/1.4 var(--a-serif); letter-spacing: -.01em; }
 .aesthetic-skill-level { color: var(--a-muted); font: var(--a-label-size)/1.5 var(--a-sans); letter-spacing: .06em; text-transform: uppercase; }
 
-.aesthetic-full-list, .aesthetic-minimal-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
 .aesthetic-grid-card, .aesthetic-timeline-card, .aesthetic-compact-row, .aesthetic-list-table { border: 1px solid var(--a-line); border-radius: 10px; background: color-mix(in srgb, var(--a-panel) 80%, transparent); }
 .aesthetic-grid-card { padding: 1.2rem; transition: border-color .2s ease, transform .2s ease; }
 .aesthetic-grid-card:hover, .aesthetic-timeline-card:hover, .aesthetic-compact-row:hover { border-color: var(--a-brass); }
 .aesthetic-card-image { aspect-ratio: 16 / 9; margin-bottom: 1rem; overflow: hidden; border-radius: 7px; background: var(--a-ink-soft); }
-.aesthetic-card-image img, .aesthetic-layout-image, .aesthetic-list-image { width: 100%; height: 100%; object-fit: cover; }
+.aesthetic-card-image img, .aesthetic-list-image { width: 100%; height: 100%; object-fit: cover; }
 .aesthetic-card-kicker, .aesthetic-data-kind { color: var(--a-brass); font: var(--a-label-size) var(--a-sans); letter-spacing: .12em; text-transform: uppercase; }
 .aesthetic-grid-card h3, .aesthetic-compact-row h3, .aesthetic-timeline-card h3 { margin: .45rem 0; color: var(--a-text); }
 .aesthetic-card-body { display: grid; gap: .75rem; min-width: 0; }
@@ -334,8 +329,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .footer-copy { margin-left: auto; }
 .aesthetic-footer a { display: grid; place-items: center; min-width: 44px; min-height: 44px; border: 1px solid var(--a-line); border-radius: 50%; color: var(--a-brass); }
 .aesthetic-footer a:hover { border-color: var(--a-brass); }
-.aesthetic-cursor { display: inline-block; width: 2px; height: 1em; margin-left: .2em; background: currentColor; vertical-align: -.1em; }
-.aesthetic-cursor-headline { background: var(--a-brass); }
 
 @keyframes aesthetic-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @media (max-width: 700px) {

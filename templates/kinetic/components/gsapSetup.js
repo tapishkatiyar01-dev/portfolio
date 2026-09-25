@@ -33,32 +33,6 @@ export function canHoverFine() {
 const REPLAY_ACTIONS = 'play none none reverse';
 
 /**
- * Transform-only reveal — never gates content behind opacity:0
- * so pagination and late ScrollTrigger still leave copy readable.
- * Replays when the element re-enters the viewport from above.
- */
-export function revealIn(el, options = {}) {
-  const { gsap: g } = getGsap();
-  if (!g || !el || prefersReducedMotion()) return null;
-
-  return g.from(el, {
-    y: options.y ?? 28,
-    scale: options.scale ?? 0.985,
-    rotate: options.rotate ?? 0,
-    opacity: 0,
-    duration: options.duration ?? 0.65,
-    ease: options.ease ?? 'power2.out',
-    overwrite: 'auto',
-    scrollTrigger: {
-      trigger: options.trigger || el,
-      start: options.start ?? 'top 88%',
-      toggleActions: options.toggleActions ?? REPLAY_ACTIONS,
-      invalidateOnRefresh: true,
-    },
-  });
-}
-
-/**
  * Choreographed section entrance when a plane enters the viewport.
  * Animates [data-reveal] children when present; otherwise the plane itself.
  * Replays on scroll-back via toggleActions reverse.
@@ -191,11 +165,6 @@ export function revealItems(container, childSelector, options = {}) {
   };
 }
 
-/** @deprecated Prefer revealItems for per-item viewport motion. */
-export function revealChildren(container, childSelector, options = {}) {
-  return revealItems(container, childSelector, options);
-}
-
 /** Magnetic pull for desktop pointer; no-ops on coarse touch. */
 export function attachMagnetic(el, strength = 0.28) {
   const { gsap: g } = getGsap();
@@ -322,26 +291,6 @@ export function attachPointerTilt(el, options = {}) {
     el.removeEventListener('pointercancel', reset);
     el.removeEventListener('pointerup', reset);
     g.set(el, { rotateX: 0, rotateY: 0 });
-  };
-}
-
-export function attachPressInvert(el) {
-  if (!el || prefersReducedMotion()) return () => {};
-
-  const down = () => el.classList.add('is-pressed');
-  const up = () => el.classList.remove('is-pressed');
-
-  el.addEventListener('pointerdown', down);
-  el.addEventListener('pointerup', up);
-  el.addEventListener('pointerleave', up);
-  el.addEventListener('pointercancel', up);
-
-  return () => {
-    el.removeEventListener('pointerdown', down);
-    el.removeEventListener('pointerup', up);
-    el.removeEventListener('pointerleave', up);
-    el.removeEventListener('pointercancel', up);
-    el.classList.remove('is-pressed');
   };
 }
 

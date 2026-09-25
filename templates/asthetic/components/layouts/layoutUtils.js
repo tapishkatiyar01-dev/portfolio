@@ -54,16 +54,8 @@ export function getItemLinks(item) {
     .map(([label, href]) => ({ label, href }));
 }
 
-export function isFullDataType(dataType) {
-  return dataType === 'full';
-}
-
 export function isMinimalDataType(dataType) {
   return dataType === 'minimal';
-}
-
-export function isListViewDataType(dataType) {
-  return dataType === 'listview';
 }
 
 export function getImageSource(value) {
@@ -97,12 +89,3 @@ export function getRecordFields(item, dataType, itemType = dataType) {
 
   return fields;
 }
-
-function slugify(value) {
-  return String(value)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-export { slugify };

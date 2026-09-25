@@ -181,7 +181,3 @@ export default function SectionTabs({
   );
 }
 
-export function dispatchStageTab(id) {
-  if (typeof window === 'undefined') return;
-  window.dispatchEvent(new CustomEvent(EVENT, { detail: id }));
-}

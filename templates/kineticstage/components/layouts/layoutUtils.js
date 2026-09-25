@@ -47,10 +47,6 @@ export function isMinimalDataType(dataType) {
   return dataType === 'minimal';
 }
 
-export function isFullDataType(dataType) {
-  return dataType === 'full';
-}
-
 export function getRecordFields(item, dataType, itemType = dataType) {
   const fields = {
     title: title(item, itemType),

@@ -55,16 +55,8 @@ export function getItemLinks(item) {
     .map(([label, href]) => ({ label, href }));
 }
 
-export function isFullDataType(dataType) {
-  return dataType === 'full';
-}
-
 export function isMinimalDataType(dataType) {
   return dataType === 'minimal';
-}
-
-export function isListViewDataType(dataType) {
-  return dataType === 'listview';
 }
 
 /** Normalize record fields. `minimal` → title, summary, tags only. */

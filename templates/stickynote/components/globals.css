@@ -429,7 +429,7 @@ html.stickynote-shuffle-c .stickynote-note-purple { background: var(--sn-yellow)
   .stickynote-lets-talk{display:none}
   .stickynote-container{width:min(100% - 1.25rem,38rem);padding-top:1.3rem}
   .stickynote-hero{grid-template-columns:1fr;gap:1.4rem}
-  .stickynote-intro-note,.stickynote-profile-note,.stickynote-facts-note{grid-row:auto;min-height:0}
+  .stickynote-intro-note,.stickynote-profile-note{grid-row:auto;min-height:0}
   .stickynote-intro-note{padding:2rem 1.25rem}
   .stickynote-profile-layout{min-height:0}
   .stickynote-note h1{max-width:none;font-size:clamp(1.75rem, 8.5vw, 2.35rem)}

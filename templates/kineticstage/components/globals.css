@@ -1006,15 +1006,6 @@
   will-change: transform;
 }
 
-.kineticstage-plane {
-  opacity: 1;
-  will-change: transform;
-}
-
-.kineticstage-plane [data-reveal] {
-  will-change: transform;
-}
-
 .kineticstage-section-head {
   margin-bottom: 1.15rem;
 }
@@ -1041,15 +1032,6 @@
   border: 1px solid var(--kineticstage-glass-border);
   box-shadow: var(--kineticstage-shadow);
   backdrop-filter: blur(8px);
-}
-
-.kineticstage-kicker {
-  margin: 0 0 0.35rem;
-  color: var(--kineticstage-coral);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
 }
 
 .kineticstage-copy {

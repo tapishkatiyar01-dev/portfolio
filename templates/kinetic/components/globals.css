@@ -780,30 +780,6 @@
   min-height: min(92dvh, 54rem);
 }
 
-.kinetic-hero-rail {
-  display: none;
-  position: absolute;
-  left: -0.5rem;
-  top: 18%;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.95rem;
-  color: var(--kinetic-mute);
-  font-family: var(--kinetic-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  will-change: transform;
-}
-
-.kinetic-hero-rail i {
-  width: 1px;
-  height: 5rem;
-  background: linear-gradient(180deg, var(--kinetic-accent), transparent);
-}
-
 .kinetic-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -1165,16 +1141,6 @@
   border-top: 1px solid var(--kinetic-line);
   box-shadow: none;
   backdrop-filter: none;
-}
-
-.kinetic-kicker {
-  margin: 0 0 0.35rem;
-  color: var(--kinetic-accent);
-  font-size: 0.76rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-family: var(--kinetic-mono);
 }
 
 .kinetic-copy {
@@ -2147,10 +2113,6 @@
     min-height: min(90dvh, 52rem);
     align-items: center;
     padding-left: 2.75rem;
-  }
-
-  .kinetic-hero-rail {
-    display: flex;
   }
 
   .kinetic-hero-copy {

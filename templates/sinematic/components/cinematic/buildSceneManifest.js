@@ -20,7 +20,3 @@ export function buildSceneManifest({ Sections = [] } = {}) {
   ];
 }
 
-/** Full nav order including home — mirrors Layout navItems. */
-export function buildFullSceneIds({ Sections = [] } = {}) {
-  return ['home', ...buildSceneManifest({ Sections }).map((s) => s.id)];
-}

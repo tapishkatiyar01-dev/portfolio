@@ -57,17 +57,6 @@ export const SCENE_RECIPES = {
     ],
   },
 
-  slideDown: {
-    opacity: [
-      [0, 0.12, 0.28, 0.72, 0.88, 1],
-      [0, 0.5, 1, 1, 0.45, 0],
-    ],
-    y: [
-      [0, 0.22, 0.78, 1],
-      [-28, 0, 0, 24],
-    ],
-  },
-
   slideFromRight: {
     opacity: [
       [0, 0.12, 0.28, 0.72, 0.88, 1],
@@ -131,59 +120,6 @@ export const SCENE_RECIPES = {
     ],
   },
 
-  flow: {
-    opacity: [
-      [0, 0.1, 0.26, 0.74, 0.9, 1],
-      [0, 0.65, 1, 1, 0.55, 0],
-    ],
-    y: [
-      [0, 0.16, 0.84, 1],
-      [18, 0, 0, -14],
-    ],
-  },
-
-  /**
-   * Pinned About — long plateau (scrub runway ~150%).
-   * Enter ease-out feel, exit slightly faster.
-   */
-  pinFade: {
-    opacity: [
-      [0, 0.04, 0.1, 0.86, 0.94, 1],
-      [0, 0.7, 1, 1, 0.45, 0],
-    ],
-    y: [
-      [0, 0.08, 0.9, 1],
-      [24, 0, 0, -20],
-    ],
-  },
-
-  /** Pinned Skills — soft lateral wipe; keep x modest */
-  pinSlide: {
-    opacity: [
-      [0, 0.04, 0.1, 0.86, 0.94, 1],
-      [0, 0.65, 1, 1, 0.4, 0],
-    ],
-    x: [
-      [0, 0.1, 0.9, 1],
-      [22, 0, 0, -16],
-    ],
-    y: [
-      [0, 0.08, 0.9, 1],
-      [12, 0, 0, -10],
-    ],
-  },
-
-  pinChapter: {
-    opacity: [
-      [0, 0.04, 0.1, 0.86, 0.94, 1],
-      [0, 0.7, 1, 1, 0.45, 0],
-    ],
-    y: [
-      [0, 0.08, 0.9, 1],
-      [24, 0, 0, -20],
-    ],
-  },
-
   settle: {
     opacity: [
       [0, 0.14, 0.32, 1],
@@ -222,12 +158,8 @@ const DYNAMIC_CYCLE_MOBILE = [
  * Remap heavy / lateral recipes when compact (touch + motion sensitivity).
  */
 export const COMPACT_RECIPE_MAP = {
-  pinFade: 'fadeHold',
-  pinSlide: 'softWipe',
-  pinChapter: 'fadeHold',
   slideFromRight: 'riseIn',
   slideFromLeft: 'riseIn',
-  slideDown: 'softWipe',
   slideUp: 'riseIn',
   heroExit: 'heroExit',
 };
@@ -250,13 +182,7 @@ export function resolveRecipe(recipe, { compact = false } = {}) {
   return COMPACT_RECIPE_MAP[recipe] || recipe;
 }
 
-/** All scenes use document-flow scrub (pin removed). */
-export function sceneModeForKind() {
-  return 'flow';
-}
-
 /** Spring scrub — desktop lag like GSAP scrub:1; mobile snappier for touch. */
 export const SCRUB_SPRING = {
   desktop: { stiffness: 110, damping: 28, mass: 0.35, restDelta: 0.001 },
-  compact: { stiffness: 260, damping: 34, mass: 0.22, restDelta: 0.001 },
 };

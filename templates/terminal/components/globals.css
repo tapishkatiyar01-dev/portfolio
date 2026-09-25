@@ -96,66 +96,6 @@ img {
   50% { filter: contrast(1.08) brightness(1.04); }
 }
 
-.terminal-shell {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-    var(--terminal-black);
-  background-size: 100% 4px, 4px 100%, auto;
-}
-
-.terminal-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.025),
-    rgba(255, 255, 255, 0.025) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-  opacity: 0.28;
-}
-
-.terminal-header {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  min-height: 4rem;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(134, 239, 172, 0.18);
-  padding: 1rem;
-  color: var(--terminal-green);
-}
-
-.terminal-header a {
-  color: var(--terminal-muted);
-}
-
-.terminal-main {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  padding: 1rem;
-}
-
-.terminal-footer {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  min-height: 2.5rem;
-  align-items: center;
-  gap: 1.5rem;
-  border-top: 1px solid rgba(134, 239, 172, 0.18);
-  padding: 0 1rem;
-  font-size: 0.75rem;
-  color: var(--terminal-muted);
-}
-
 .terminal-window {
   overflow: hidden;
   border: 1px solid var(--terminal-line);
@@ -552,17 +492,6 @@ img {
   font-weight: 400;
 }
 
-.terminal-avatar-box {
-  display: flex;
-  min-height: 7.5rem;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 1px solid rgba(134, 239, 172, 0.18);
-  background: rgba(93, 255, 88, 0.035);
-  color: var(--terminal-green);
-}
-
 .terminal-about-grid {
   display: grid;
   gap: clamp(1.25rem, 3vw, 2.5rem);
@@ -782,21 +711,6 @@ img {
   line-height: 1.7;
 }
 
-.terminal-inline-dot {
-  color: var(--terminal-green);
-}
-
-.terminal-inline-dot::before {
-  content: "";
-  display: inline-block;
-  width: 0.32rem;
-  height: 0.32rem;
-  margin-right: 0.55rem;
-  border-radius: 999px;
-  background: currentColor;
-  vertical-align: 0.12em;
-}
-
 .terminal-skill-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
@@ -972,43 +886,6 @@ img {
   color: var(--terminal-muted);
 }
 
-.terminal-full-list,
-.terminal-minimal-list {
-  display: grid;
-  gap: 1rem;
-}
-
-.terminal-full-card {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.32fr) minmax(0, 1fr);
-  gap: 1.25rem;
-  border: 1px solid var(--terminal-line);
-  padding: 1rem;
-}
-
-.terminal-full-media {
-  min-height: 10rem;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border: 1px solid var(--terminal-line);
-  color: var(--terminal-green);
-}
-
-.terminal-full-media img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.terminal-full-body,
-.terminal-minimal-card {
-  display: grid;
-  gap: 0.75rem;
-  align-content: start;
-}
-
-/* Keep every terminal surface and image treatment tied to the command accent. */
 .terminal-window,
 .terminal-title-bar,
 .terminal-nav-tabs,
@@ -1025,8 +902,7 @@ img {
 .terminal-badge,
 .terminal-list-image,
 .terminal-input,
-.terminal-full-card,
-.terminal-full-media {
+.terminal-list-image {
   border-color: var(--terminal-line);
 }
 
@@ -1048,13 +924,11 @@ img {
 
 .terminal-card-image img,
 .terminal-layout-image,
-.terminal-full-media img,
 .terminal-list-image {
   filter: grayscale(1) contrast(1.15) brightness(0.86) sepia(1) saturate(1.7);
 }
 
 .terminal-card-image::after,
-.terminal-full-media::after,
 .terminal-timeline-card.has-image::after,
 .terminal-list-row:has(.terminal-list-image)::after {
   content: "";
@@ -1112,7 +986,6 @@ img {
 }
 
 .terminal-card-image img,
-.terminal-full-media img,
 .terminal-layout-image {
   height: 100%;
   width: 100%;
@@ -1143,7 +1016,6 @@ img {
 .terminal-card-image,
 .terminal-avatar-frame,
 .terminal-about-avatar,
-.terminal-full-media,
 .terminal-list-image,
 .terminal-compact-image {
   border-color: var(--terminal-line) !important;
@@ -1231,27 +1103,6 @@ img {
   }
 }
 
-.terminal-full-body h3,
-.terminal-minimal-card h3 {
-  color: var(--terminal-text);
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.terminal-full-body > p:not(.terminal-card-kicker),
-.terminal-minimal-card p {
-  color: var(--terminal-muted);
-  font-size: 0.85rem;
-  line-height: 1.7;
-}
-
-.terminal-minimal-card {
-  grid-template-columns: minmax(0, 1fr) auto;
-  border-left: 2px solid var(--terminal-green);
-  background: rgba(255, 255, 255, 0.012);
-  padding: 0.9rem 1rem;
-}
-
 .terminal-list-head {
   display: none;
 }
@@ -1286,12 +1137,6 @@ img {
 }
 
 .terminal-list-row span:first-child {
-  color: var(--terminal-green);
-}
-
-.terminal-link-row {
-  border-left: 1px solid rgba(134, 239, 172, 0.28);
-  padding: 0.45rem 0.75rem;
   color: var(--terminal-green);
 }
 
@@ -1430,9 +1275,7 @@ img {
   .terminal-compact-row,
   .terminal-about-grid,
   .terminal-form-row,
-  .terminal-command-form,
-  .terminal-full-card,
-  .terminal-minimal-card {
+  .terminal-command-form {
     grid-template-columns: 1fr;
   }
 

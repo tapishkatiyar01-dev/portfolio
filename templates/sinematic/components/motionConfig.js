@@ -15,20 +15,10 @@ import {
   useReducedMotion,
   useScroll,
   useSpring,
-  useTransform,
 } from 'framer-motion';
 import { setPersistedSectionId, setPersistedTemplate } from '@/lib/portfolioCookies';
 
 export const sinematicEase = [0.16, 1, 0.3, 1];
-
-export const sinematicReveal = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: sinematicEase },
-  },
-};
 
 export const sinematicStagger = {
   hidden: {},
@@ -392,19 +382,6 @@ export function useSinematicReveal(amount = 0.18) {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount, once: true });
   return { ref, isInView };
-}
-
-/** Map a scene progress MotionValue into staggered child opacity (camera-scrub reveal). */
-export function useSceneStaggerOpacity(progress, index, total = 8) {
-  const start = 0.22 + (index / Math.max(total, 1)) * 0.22;
-  const mid = Math.min(start + 0.1, 0.55);
-  return useTransform(progress, [start, mid, 0.7, 0.88], [0, 1, 1, 0.4]);
-}
-
-export function useSinematicParallax(speed = 0.15) {
-  const { scrollYProgress, reduced } = useSinematicMotion();
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', `${speed * 100}%`]);
-  return reduced ? undefined : { y };
 }
 
 export function sinematicPressMotion(reduced) {
