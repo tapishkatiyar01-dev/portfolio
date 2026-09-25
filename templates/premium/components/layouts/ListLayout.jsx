@@ -10,11 +10,11 @@ export default function ListLayout({ items = [], dataType, itemType = dataType, 
   const isProject = dataType === 'project' || itemType === 'project';
   const isMinimal = dataType === 'minimal';
   const count = totalCount ?? items.length;
-  const hasImages = collectionHasImages ?? (!isMinimal && items.some((item) => item.image));
+  const hasImages = collectionHasImages ?? (!isMinimal && items.some((item) => getImageSource(item.image)));
   return (
     <motion.section ref={ref} className="premium-layout-window" variants={premiumWindowVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
       <div className="premium-layout-header"><h3>{dataType}</h3><span>{count} {count === 1 ? 'entry' : 'entries'}</span></div>
-      <div className={`premium-layout-content premium-list${hasImages ? ' has-images' : ''}`} data-data-type={dataType}>
+      <div className={`premium-layout-content premium-list${hasImages ? ' has-images' : ' no-images'}`} data-data-type={dataType}>
         {!isMinimal && <div className="premium-list-head">{hasImages && <span aria-hidden="true" /> }<span>Title</span><span>Summary</span><span>{isProject ? 'Tech Stack' : 'Details'}</span><span>Links</span></div>}
         {items.length ? items.map((item, index) => <ListRow key={`${getTitle(item, itemType)}-${index}`} item={item} dataType={dataType} itemType={itemType} isProject={isProject} isMinimal={isMinimal} hasImages={hasImages} index={index} />) : <div className="premium-layout-empty" role="status">No {dataType} entries yet.</div>}
       </div>
@@ -27,8 +27,8 @@ function ListRow({ item, dataType, itemType, isProject, isMinimal, hasImages, in
   const imageSource = isMinimal ? '' : getImageSource(item.image);
   const showImage = Boolean(imageSource);
   return (
-    <motion.div className={`premium-list-row${showImage ? ' premium-list-row-with-image' : ''}`} custom={index} variants={premiumItemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.16 }} whileHover={{ x: 6, scale: 1.005 }} whileTap={{ scale: 0.985 }} transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}>
-      {showImage ? <img className="premium-list-image" src={imageSource} alt={`${fields.title} preview`} loading="lazy" /> : hasImages && <span className="premium-list-image-placeholder" aria-hidden="true" />}
+    <motion.div className={`premium-list-row${showImage ? ' premium-list-row-with-image has-image' : ' no-image'}`} custom={index} variants={premiumItemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.16 }} whileHover={{ x: 6, scale: 1.005 }} whileTap={{ scale: 0.985 }} transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}>
+      {showImage ? <img className="premium-list-image" src={imageSource} alt={`${fields.title} preview`} loading="lazy" /> : hasImages ? <span className="premium-list-image-placeholder" aria-hidden="true" /> : null}
       <div className="premium-list-title-cell">
         <strong>{fields.title}</strong>
       </div>

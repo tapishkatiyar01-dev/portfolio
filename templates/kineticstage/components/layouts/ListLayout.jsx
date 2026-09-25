@@ -15,6 +15,7 @@ registerStageGsap();
 export default function ListLayout({ items, dataType, itemType }) {
   const listRef = useRef(null);
   const isMinimal = isMinimalDataType(dataType);
+  const hasImages = !isMinimal && items.some((item) => getRecordFields(item, dataType, itemType).image);
 
   useGSAP(
     () => {
@@ -35,7 +36,7 @@ export default function ListLayout({ items, dataType, itemType }) {
   );
 
   return (
-    <div className={`kineticstage-list${isMinimal ? ' is-minimal' : ''}`}>
+    <div className={`kineticstage-list${isMinimal ? ' is-minimal' : ''}${hasImages ? ' has-images' : ' no-images'}`}>
       <div className="kineticstage-list-head" aria-hidden="true">
         <span>#</span>
         <span>Entry</span>
@@ -49,7 +50,7 @@ export default function ListLayout({ items, dataType, itemType }) {
           return (
             <StageMotionItem
               key={`${fields.title}-${index}`}
-              className="kineticstage-list-row"
+              className={`kineticstage-list-row ${fields.image ? 'has-image' : 'no-image'}`}
               lift={-6}
               scale={1.015}
             >

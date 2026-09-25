@@ -1,10 +1,21 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useClientRevealList } from '@/lib/usePaginatedSection';
 import { premiumItemVariants, premiumWindowVariants, usePremiumInView } from './motionConfig';
 
 export default function Skills({ skills = [] }) {
   const { ref, isInView } = usePremiumInView();
+  const {
+    visibleItems,
+    total,
+    allVisible,
+    needsToggle,
+    nextBatch,
+    showMore,
+    showLess,
+  } = useClientRevealList(skills);
+
   return (
     <motion.section id="skills" ref={ref} className="premium-section premium-skills-card" variants={premiumWindowVariants} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
       <div className="premium-section-heading">
@@ -15,7 +26,7 @@ export default function Skills({ skills = [] }) {
         <p>Materials and instruments used to ship reliable work.</p>
       </div>
       <div className="premium-skills-grid">
-        {skills.map((skill, index) => (
+        {visibleItems.map((skill, index) => (
           <motion.div
             className="premium-skill"
             key={skill.name || index}
@@ -42,6 +53,32 @@ export default function Skills({ skills = [] }) {
           </motion.div>
         ))}
       </div>
+      {needsToggle ? (
+        <div className="premium-show-more-wrap">
+          {allVisible ? (
+            <button
+              type="button"
+              className="premium-button premium-show-more"
+              onClick={showLess}
+              aria-expanded="true"
+            >
+              Show less
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="premium-button premium-show-more"
+              onClick={showMore}
+              aria-expanded="false"
+            >
+              Show more · {nextBatch} more
+            </button>
+          )}
+          <span className="premium-show-more-meta">
+            Showing {visibleItems.length} of {total}
+          </span>
+        </div>
+      ) : null}
     </motion.section>
   );
 }

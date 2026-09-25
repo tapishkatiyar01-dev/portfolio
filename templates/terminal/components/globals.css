@@ -1173,6 +1173,23 @@ img {
   border: 1px solid var(--terminal-line);
 }
 
+.terminal-list-image-placeholder {
+  display: block;
+  height: 2rem;
+  width: 2.5rem;
+  border: 1px dashed var(--terminal-line);
+}
+
+.terminal-list-table.no-images .terminal-list-image-frame,
+.terminal-list-table.no-images .terminal-list-image-placeholder,
+.terminal-list-row.no-image .terminal-list-image-frame,
+.terminal-list-row.no-image .terminal-list-image-placeholder {
+  display: none;
+  width: 0;
+  height: 0;
+  border: 0;
+}
+
 .terminal-window-hero .terminal-content {
   padding: clamp(1.15rem, 3vw, 2.5rem);
 }

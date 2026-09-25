@@ -29,7 +29,7 @@ export default function LayoutRenderer({
     showLess,
   } = useHybridPaginatedSection({ sectionData, sectionId });
 
-  const collectionHasImages = dataType !== 'minimal' && items.some((item) => item.image);
+  const collectionHasImages = dataType !== 'minimal' && items.some((item) => getImageSource(item.image));
   const shared = {
     items: visibleItems,
     dataType,

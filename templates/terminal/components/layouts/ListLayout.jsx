@@ -20,7 +20,7 @@ export default function ListLayout({ items, dataType, itemType = dataType }) {
   const tableClassName = [
     'terminal-list-table',
     isProject ? 'project-list' : '',
-    hasImages ? 'has-images' : '',
+    hasImages ? 'has-images' : 'no-images',
     `data-${itemType || dataType}`,
   ].filter(Boolean).join(' ');
 
@@ -68,20 +68,18 @@ export default function ListLayout({ items, dataType, itemType = dataType }) {
 function ListRow({ fields, isProject, isMinimal, hasImages, reduced }) {
   return (
     <motion.div
-      className="terminal-list-row"
+      className={`terminal-list-row ${fields.image ? 'has-image' : 'no-image'}`}
       layout="position"
       whileHover={reduced ? undefined : { x: 4 }}
       whileTap={reduced ? undefined : { scale: 0.99 }}
       title={Array.isArray(fields.summary) ? fields.summary[0] : fields.summary}
     >
-      {hasImages && (
-        fields.image ? (
-          <span className="terminal-list-image-frame">
-            <img className="terminal-avatar-image terminal-list-image" src={fields.image} alt="" />
-            <div className="terminal-avatar-scan" />
-          </span>
-        ) : <span />
-      )}
+      {hasImages && fields.image ? (
+        <span className="terminal-list-image-frame">
+          <img className="terminal-avatar-image terminal-list-image" src={fields.image} alt="" />
+          <div className="terminal-avatar-scan" />
+        </span>
+      ) : hasImages ? <span className="terminal-list-image-placeholder" aria-hidden="true" /> : null}
 
       <span className="terminal-list-cell terminal-list-title">{fields.title}</span>
 

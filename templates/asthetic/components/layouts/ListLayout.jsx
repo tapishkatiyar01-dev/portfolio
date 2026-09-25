@@ -20,12 +20,12 @@ export default function ListLayout({ items, dataType, itemType = dataType, secti
   const isProject = itemType === 'project' || dataType === 'project';
   const isMinimal = isMinimalDataType(dataType);
   const isListView = dataType === 'listview' || itemType === 'listview';
-  const hasImages = !isMinimal && items.some((item) => item.image);
+  const hasImages = !isMinimal && items.some((item) => getRecordFields(item, dataType, itemType).image);
   const headers = getHeaders({ dataType, itemType, isProject, isMinimal });
   const tableClassName = [
     'aesthetic-list-table',
     isProject ? 'project-list' : '',
-    hasImages ? 'has-images' : '',
+    hasImages ? 'has-images' : 'no-images',
     isListView ? 'is-listview' : '',
     isMinimal ? 'data-minimal' : '',
     `data-${itemType || dataType}`,
@@ -80,17 +80,15 @@ function ListViewRow({ item, dataType, itemType, hasImages, reduced }) {
 
   return (
     <motion.article
-      className={`aesthetic-list-row aesthetic-listview-row${hasImages ? ' has-images' : ''}`}
+      className={`aesthetic-list-row aesthetic-listview-row ${hasImages ? 'has-image' : 'no-image'}`}
       variants={aestheticStaggerItem}
       {...aestheticTimelineMotion(reduced)}
     >
-      {hasImages && (
-        fields.image ? (
-          <span className="aesthetic-list-image-frame">
-            <img className="aesthetic-list-image" src={fields.image} alt={fields.title} loading="lazy" />
-          </span>
-        ) : <span className="aesthetic-list-image-placeholder" aria-hidden="true" />
-      )}
+      {hasImages && fields.image ? (
+        <span className="aesthetic-list-image-frame">
+          <img className="aesthetic-list-image" src={fields.image} alt={fields.title} loading="lazy" />
+        </span>
+      ) : null}
       <div className="aesthetic-listview-primary">
         <strong>{fields.title}</strong>
         {fields.subtitle && <span>{fields.subtitle}</span>}
@@ -105,18 +103,18 @@ function ListRow({ item, dataType, itemType, isProject, isMinimal, hasImages, re
 
   return (
     <motion.article
-      className="aesthetic-list-row"
+      className={`aesthetic-list-row ${hasImages ? 'has-image' : 'no-image'}`}
       variants={aestheticStaggerItem}
       {...aestheticTimelineMotion(reduced)}
     >
-      {hasImages && (
-        fields.image ? (
-          <span className="aesthetic-list-image-frame">
-            <img className="aesthetic-list-image" src={fields.image} alt={fields.title} loading="lazy" />
-            <div className="aesthetic-avatar-scan" aria-hidden="true" />
-          </span>
-        ) : <span className="aesthetic-list-image-placeholder" aria-hidden="true" />
-      )}
+      {hasImages && fields.image ? (
+        <span className="aesthetic-list-image-frame">
+          <img className="aesthetic-list-image" src={fields.image} alt={fields.title} loading="lazy" />
+          <div className="aesthetic-avatar-scan" aria-hidden="true" />
+        </span>
+      ) : hasImages ? (
+        <span className="aesthetic-list-image-placeholder" aria-hidden="true" />
+      ) : null}
 
       <span className="aesthetic-list-cell aesthetic-list-title">{fields.title}</span>
 

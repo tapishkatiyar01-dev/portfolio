@@ -856,6 +856,10 @@
   gap: 0.75rem;
 }
 
+.premium-skills-card .premium-show-more-wrap {
+  margin-top: 1.15rem;
+}
+
 .premium-skill {
   padding: 0.95rem 0.9rem;
   border: 1px solid var(--premium-border);
@@ -1280,6 +1284,14 @@
   border: 1px dashed var(--premium-border);
   background: var(--premium-surface-soft);
   opacity: 0.7;
+}
+
+.premium-list.no-images .premium-list-image,
+.premium-list.no-images .premium-list-image-placeholder {
+  display: none;
+  width: 0;
+  height: 0;
+  border: 0;
 }
 
 .premium-list.has-images .premium-list-head,

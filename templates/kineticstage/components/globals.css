@@ -1735,6 +1735,14 @@
   margin-bottom: 0.25rem;
 }
 
+.kineticstage-list.no-images .kineticstage-list-title img,
+.kineticstage-list-row.no-image .kineticstage-list-title img {
+  display: none;
+  margin: 0;
+  width: 0;
+  height: 0;
+}
+
 .kineticstage-list-title strong {
   font-size: 1.02rem;
   letter-spacing: -0.015em;

@@ -457,6 +457,8 @@ html.stickynote-shuffle-c .stickynote-note-purple { background: var(--sn-yellow)
 .stickynote-layout-list .stickynote-entry-links{margin-top:.35rem}
 .stickynote-layout-list .stickynote-chip-list{margin-top:.45rem}
 .stickynote-layout-list .stickynote-entry-image{flex:0 0 3.75rem;width:3.75rem;height:3.75rem;margin:0;object-fit:cover;border-width:3px}
+.stickynote-layout-list .stickynote-entry.no-image .stickynote-entry-image,
+.stickynote-layout-list.no-images .stickynote-entry-image{display:none;flex:0;width:0;height:0;margin:0}
 .stickynote-layout-list .stickynote-entry-body{flex:1 1 auto;min-width:0}
 .stickynote-hero-stats{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem;padding-top:.9rem;border-top:1px dashed #31556b66}.stickynote-hero-stats>div{display:flex;align-items:baseline;gap:.3rem;padding:.32rem .48rem;border:1px solid #31556b55;background:#ffffff55;font-size:.68rem}.stickynote-hero-stats strong{font-size:.82rem}.stickynote-hero-stats span{font-size:.68rem}
 @media(max-width:650px){

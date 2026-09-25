@@ -1439,6 +1439,12 @@ html.arcade-stars-off .arcade-stars {
   filter: saturate(0.75);
 }
 
+.arcade-leaderboard.no-images .arcade-list-thumb,
+.arcade-leaderboard-row.no-image .arcade-list-thumb {
+  display: none;
+  margin: 0;
+}
+
 .arcade-leaderboard-detail {
   color: var(--arcade-muted);
   font-size: var(--arcade-fs-md);

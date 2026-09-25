@@ -9,6 +9,7 @@ import { getRecordFields, isMinimalDataType } from './layoutUtils';
 export default function ListLayout({ items, dataType, itemType }) {
   const reduced = useReducedMotion();
   const isMinimal = isMinimalDataType(dataType);
+  const hasImages = !isMinimal && items.some((item) => getRecordFields(item, dataType, itemType).image);
   const listRef = useRef(null);
   const inView = useInView(listRef, { once: true, amount: 0.02, margin: '0px 0px -8% 0px' });
 
@@ -20,7 +21,7 @@ export default function ListLayout({ items, dataType, itemType }) {
         <span>HIGH SCORES</span>
       </div>
 
-      <div className={`arcade-leaderboard${isMinimal ? ' arcade-leaderboard-minimal' : ''}`}>
+      <div className={`arcade-leaderboard${isMinimal ? ' arcade-leaderboard-minimal' : ''}${hasImages ? ' has-images' : ' no-images'}`}>
         <div className="arcade-leaderboard-head" aria-hidden="true">
           <span>#</span>
           <span>Entry</span>
@@ -42,7 +43,7 @@ export default function ListLayout({ items, dataType, itemType }) {
             return (
               <motion.article
                 key={`${fields.title}-${index}`}
-                className="arcade-leaderboard-row"
+                className={`arcade-leaderboard-row ${fields.image ? 'has-image' : 'no-image'}`}
                 variants={arcadeStaggerItem}
                 {...arcadeTimelineMotion(reduced)}
               >

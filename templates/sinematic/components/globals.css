@@ -1709,6 +1709,10 @@ h2 em {
   background: var(--s-line);
 }
 
+.sinematic-skills .sinematic-show-more-wrap {
+  margin-top: 1.15rem;
+}
+
 .sinematic-skill {
   display: grid;
   gap: 0.45rem;

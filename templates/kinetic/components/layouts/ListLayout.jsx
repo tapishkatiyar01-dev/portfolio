@@ -15,6 +15,7 @@ registerKineticGsap();
 export default function ListLayout({ items, dataType, itemType }) {
   const listRef = useRef(null);
   const isMinimal = isMinimalDataType(dataType);
+  const hasImages = !isMinimal && items.some((item) => getRecordFields(item, dataType, itemType).image);
 
   useGSAP(
     () => {
@@ -35,7 +36,7 @@ export default function ListLayout({ items, dataType, itemType }) {
   );
 
   return (
-    <div className={`kinetic-list${isMinimal ? ' is-minimal' : ''}`}>
+    <div className={`kinetic-list${isMinimal ? ' is-minimal' : ''}${hasImages ? ' has-images' : ' no-images'}`}>
       <div className="kinetic-list-head" aria-hidden="true">
         <span>#</span>
         <span>Entry</span>
@@ -49,7 +50,7 @@ export default function ListLayout({ items, dataType, itemType }) {
           return (
             <KineticMotionItem
               key={`${fields.title}-${index}`}
-              className="kinetic-list-row"
+              className={`kinetic-list-row ${fields.image ? 'has-image' : 'no-image'}`}
               lift={-6}
               scale={1.015}
             >

@@ -1,9 +1,11 @@
 'use client';
 
 import { useRef } from 'react';
+import { useClientRevealList } from '@/lib/usePaginatedSection';
 import {
   getGsap,
   prefersReducedMotion,
+  refreshScroll,
   registerKineticGsap,
   revealItems,
   useGSAP,
@@ -16,6 +18,15 @@ export default function Skills({ skills = [], index = 0 }) {
   const rootRef = useRef(null);
   const gridRef = useRef(null);
   const headRef = useRef(null);
+  const {
+    visibleItems,
+    total,
+    allVisible,
+    needsToggle,
+    nextBatch,
+    showMore,
+    showLess,
+  } = useClientRevealList(skills);
 
   useGSAP(
     () => {
@@ -64,7 +75,7 @@ export default function Skills({ skills = [], index = 0 }) {
     },
     {
       scope: rootRef,
-      dependencies: [skills.map((s) => s.name).join('|')],
+      dependencies: [visibleItems.map((s) => s.name).join('|')],
       revertOnUpdate: true,
     },
   );
@@ -80,7 +91,7 @@ export default function Skills({ skills = [], index = 0 }) {
         <h2>Tools in the stack</h2>
       </div>
       <div className="kinetic-skill-grid" ref={gridRef} data-kinetic-items>
-        {skills.map((skill, skillIndex) => (
+        {visibleItems.map((skill, skillIndex) => (
           <KineticMotionItem
             key={skill.name || skillIndex}
             className="kinetic-skill-card"
@@ -93,6 +104,38 @@ export default function Skills({ skills = [], index = 0 }) {
           </KineticMotionItem>
         ))}
       </div>
+      {needsToggle ? (
+        <div className="kinetic-more">
+          {allVisible ? (
+            <button
+              type="button"
+              className="kinetic-btn"
+              onClick={() => {
+                showLess();
+                refreshScroll();
+              }}
+              aria-expanded="true"
+            >
+              Show less
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="kinetic-btn"
+              onClick={() => {
+                showMore();
+                refreshScroll();
+              }}
+              aria-expanded="false"
+            >
+              Show more · {nextBatch} more
+            </button>
+          )}
+          <p className="kinetic-more-meta">
+            Showing {visibleItems.length} of {total}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

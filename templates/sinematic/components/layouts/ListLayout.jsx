@@ -14,6 +14,7 @@ export default function ListLayout({ items, dataType, itemType, sectionName = ''
   const { ref, isInView } = useSinematicReveal();
   const reduced = useReducedMotion();
   const isMinimal = isMinimalDataType(dataType);
+  const hasImages = !isMinimal && items.some((item) => getRecordFields(item, dataType, itemType).image);
   const tapMotion = reduced
     ? {}
     : { whileTap: { scale: 0.99 }, transition: { duration: 0.14 } };
@@ -29,7 +30,7 @@ export default function ListLayout({ items, dataType, itemType, sectionName = ''
       {sectionName && <div className="sinematic-panel-number">{sectionName}</div>}
 
       <div
-        className={`sinematic-list data-${dataType}${isMinimal ? ' data-minimal' : ''}`}
+        className={`sinematic-list data-${dataType}${isMinimal ? ' data-minimal' : ''}${hasImages ? ' has-images' : ' no-images'}`}
         data-data-type={dataType}
       >
         {items.map((item, index) => {
