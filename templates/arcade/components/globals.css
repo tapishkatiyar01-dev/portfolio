@@ -652,7 +652,7 @@ html.arcade-stars-off .arcade-stars {
   place-items: center;
   height: 100%;
   color: var(--arcade-yellow);
-  font: 400 clamp(2rem, 8vw, 3.5rem) var(--arcade-display);
+  font: 400 clamp(1.7rem, 6vw, 2.75rem) var(--arcade-display);
   text-shadow: 3px 3px 0 var(--arcade-purple);
 }
 

@@ -117,7 +117,7 @@ a { color: inherit; text-decoration: none; }
 .stickynote-intro-note { grid-row: span 2; min-height: 20rem; transform: rotate(-1.3deg); }
 .stickynote-profile-note { min-height: 20rem; transform: rotate(.6deg); }
 .stickynote-kicker { margin: 0 0 .7rem; font-size: 1.05rem; }
-.stickynote-note h1 { max-width: 9ch; margin: 0 0 .6rem; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 500; line-height: .95; letter-spacing: -.07em; }
+.stickynote-note h1 { max-width: 11ch; margin: 0 0 .6rem; font-size: clamp(2.2rem, 4.2vw, 3.4rem); font-weight: 500; line-height: 1; letter-spacing: -.05em; }
 .stickynote-headline { min-height: 1.7rem; font-size: 1rem; font-weight: 700; }
 .stickynote-summary { max-width: 32ch; line-height: 1.7; }
 .stickynote-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.3rem; }
@@ -132,7 +132,7 @@ a { color: inherit; text-decoration: none; }
 .stickynote-trait span:first-child { font-size: 1.4rem; }
 .stickynote-avatar-wrap { display: grid; place-items: center; }
 .stickynote-avatar, .stickynote-avatar-placeholder { width: min(100%, 12rem); aspect-ratio: 1; border: 6px solid #fbfbf3; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 10px #27576a38; }
-.stickynote-avatar-placeholder { display: grid; place-items: center; background: #627b89; color: #fff; font-size: 4rem; }
+.stickynote-avatar-placeholder { display: grid; place-items: center; background: #627b89; color: #fff; font-size: 2.75rem; }
 .stickynote-location { margin: .6rem 0 0; font-size: .82rem; }
 .stickynote-hero-stats { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; padding-top: .9rem; border-top: 1px dashed #31556b66; }
 .stickynote-hero-stats > div { display: flex; align-items: baseline; gap: .3rem; padding: .32rem .48rem; border: 1px solid #31556b55; background: #ffffff55; font-size: .68rem; }
@@ -417,7 +417,7 @@ html.stickynote-shuffle-c .stickynote-note-purple { background: var(--sn-yellow)
   .stickynote-intro-note,.stickynote-profile-note,.stickynote-facts-note{grid-row:auto;min-height:0}
   .stickynote-intro-note{padding:2rem 1.25rem}
   .stickynote-profile-layout{min-height:0}
-  .stickynote-note h1{font-size:clamp(2.65rem,16vw,4rem)}
+  .stickynote-note h1{font-size:clamp(2.05rem,12vw,3rem)}
   .stickynote-lower-grid{grid-template-columns:1fr;gap:1.2rem}
   .stickynote-layout-grid,.stickynote-layout-timeline{grid-template-columns:1fr}
   .stickynote-entry-compact{display:block}
@@ -439,11 +439,44 @@ html.stickynote-shuffle-c .stickynote-note-purple { background: var(--sn-yellow)
 .stickynote-layout-grid{align-items:start}
 .stickynote-layout-grid .stickynote-entry:nth-child(3n+1){margin-top:.8rem}
 .stickynote-layout-grid .stickynote-entry:nth-child(3n){margin-top:-.35rem}
-.stickynote-layout-timeline{position:relative;display:grid;grid-template-columns:1fr;gap:.9rem;padding:1rem 1.1rem 1rem 2.2rem}
-.stickynote-layout-timeline::before{content:"";position:absolute;top:1.2rem;bottom:1.2rem;left:1.05rem;width:2px;background:#7eaa54aa}
-.stickynote-entry-timeline{min-height:0;padding:1rem 1.25rem}
-.stickynote-entry-timeline .stickynote-tape{left:1.5rem;transform:translateX(-50%) rotate(-3deg)}
-.stickynote-timeline-dot{position:absolute;top:1.35rem;left:-1.55rem;width:.8rem;height:.8rem;border:2px solid var(--sn-paper);border-radius:50%;background:#78ad45;box-shadow:0 0 0 3px #78ad4544}
+.stickynote-layout-timeline {
+  --sn-rail: 1.2rem;
+  --sn-rail-gutter: 1.4rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 1rem 1rem 1rem calc(var(--sn-rail) + var(--sn-rail-gutter));
+  overflow: hidden;
+}
+.stickynote-layout-timeline::before {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  left: var(--sn-rail);
+  width: 2px;
+  background: #7eaa54aa;
+}
+.stickynote-entry-timeline {
+  min-height: 0;
+  padding: 1rem 1.25rem;
+}
+.stickynote-entry-timeline .stickynote-tape {
+  left: 1.5rem;
+  transform: translateX(-50%) rotate(-3deg);
+}
+.stickynote-timeline-dot {
+  position: absolute;
+  top: 1.35rem;
+  left: calc(var(--sn-rail) - (var(--sn-rail) + var(--sn-rail-gutter)) - 0.4rem);
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid var(--sn-paper);
+  border-radius: 50%;
+  background: #78ad45;
+  box-shadow: 0 0 0 3px #78ad4544;
+}
 .stickynote-layout-compact{gap:.55rem}
 .stickynote-layout-compact .stickynote-entry{display:grid;grid-template-columns:minmax(12rem,.7fr) minmax(0,1.7fr);align-items:center;gap:1.2rem;min-height:0;padding:1rem 1.25rem}
 .stickynote-layout-compact .stickynote-entry-image{width:5rem;height:3.5rem;margin:0;grid-row:span 2}
@@ -466,7 +499,6 @@ html.stickynote-shuffle-c .stickynote-note-purple { background: var(--sn-yellow)
   .stickynote-layout-compact .stickynote-entry-image{margin-bottom:.65rem}
   .stickynote-layout-list .stickynote-entry{padding:.85rem .75rem;gap:.7rem .8rem}
   .stickynote-layout-list .stickynote-entry-image{flex-basis:3rem;width:3rem;height:3rem}
-  .stickynote-timeline-dot{left:-1.55rem}
 }
 .stickynote-app .description-disclosure-trigger { border: 0 !important; border-radius: 0; background: transparent; color: #41372b; font-family: inherit; text-transform: none; box-shadow: none; padding-inline: 0; }
 .stickynote-app .description-disclosure-trigger:hover { background: transparent; color: #8b6514; transform: translateX(3px) rotate(-1deg); }

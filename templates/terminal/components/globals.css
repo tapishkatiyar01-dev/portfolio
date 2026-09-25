@@ -770,7 +770,7 @@ img {
   flex-direction: column;
   border: 1px solid rgba(134, 239, 172, 0.3);
   color: var(--terminal-green);
-  font-size: 4rem;
+  font-size: 2.75rem;
   line-height: 0.9;
 }
 
@@ -1253,8 +1253,7 @@ img {
 }
 
 .terminal-list-head {
-  color: var(--terminal-green);
-  font-size: 0.75rem;
+  display: none;
 }
 
 .terminal-list-row {
@@ -1454,31 +1453,15 @@ img {
   }
 
   .terminal-list-cell {
-    display: flex;
-    gap: 0.65rem;
-    align-items: baseline;
+    display: block;
+    min-width: 0;
   }
 
   .terminal-list-cell::before {
-    flex: 0 0 5.5rem;
-    color: var(--terminal-muted);
-    content: "";
-    font-size: 0.65rem;
-    text-transform: uppercase;
+    display: none;
+    content: none;
+    flex: none;
   }
-
-  .terminal-list-title::before { content: "Project"; }
-  .terminal-list-summary::before { content: "Summary"; }
-  .terminal-list-tags::before { content: "Tech stack"; }
-  .terminal-list-links::before { content: "Links"; }
-  .terminal-list-secondary::before { content: "Company"; }
-  .terminal-list-date::before { content: "Period"; }
-
-  .terminal-list-table.data-experience .terminal-list-title::before { content: "Role"; }
-  .terminal-list-table.data-education .terminal-list-title::before { content: "Degree"; }
-  .terminal-list-table.data-full .terminal-list-title::before,
-  .terminal-list-table.data-minimal .terminal-list-title::before,
-  .terminal-list-table.data-listview .terminal-list-title::before { content: "Title"; }
 
   .terminal-grid-card {
     grid-template-columns: 1fr;

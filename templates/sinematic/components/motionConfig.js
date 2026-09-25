@@ -76,23 +76,6 @@ export function SinematicMotionProvider({ children }) {
   const smoothY = useSpring(pointerY, { stiffness: 190, damping: 16, mass: 0.28 });
   const rafRef = useRef(0);
   const pendingRef = useRef(null);
-  const [lite, setLite] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 760px), (hover: none) and (pointer: coarse)');
-    const sync = () => {
-      const next = mq.matches;
-      setLite(next);
-      document.documentElement.classList.toggle('sinematic-lite', next);
-      if (next) {
-        document.documentElement.classList.add('sinematic-grain-off');
-        document.documentElement.classList.remove('sinematic-grain-on');
-      }
-    };
-    sync();
-    mq.addEventListener('change', sync);
-    return () => mq.removeEventListener('change', sync);
-  }, []);
 
   const flushPointer = useCallback(() => {
     rafRef.current = 0;
@@ -105,17 +88,17 @@ export function SinematicMotionProvider({ children }) {
 
   const queuePointer = useCallback(
     (x, y) => {
-      if (reduced || lite) return;
+      if (reduced) return;
       pendingRef.current = { x, y };
       if (!rafRef.current) {
         rafRef.current = requestAnimationFrame(flushPointer);
       }
     },
-    [flushPointer, lite, reduced],
+    [flushPointer, reduced],
   );
 
   useEffect(() => {
-    if (reduced || lite) return undefined;
+    if (reduced) return undefined;
 
     const fineMq = window.matchMedia('(pointer: fine)');
     const touchState = { active: false, x: 0, y: 0, interactedAt: 0 };
@@ -226,17 +209,16 @@ export function SinematicMotionProvider({ children }) {
       window.removeEventListener('deviceorientation', onOrientation);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [lite, queuePointer, reduced]);
+  }, [queuePointer, reduced]);
 
   const value = useMemo(
     () => ({
       reduced,
-      lite,
       scrollYProgress,
-      pointerX: lite || reduced ? pointerX : smoothX,
-      pointerY: lite || reduced ? pointerY : smoothY,
+      pointerX: reduced ? pointerX : smoothX,
+      pointerY: reduced ? pointerY : smoothY,
     }),
-    [lite, reduced, scrollYProgress, pointerX, pointerY, smoothX, smoothY],
+    [reduced, scrollYProgress, pointerX, pointerY, smoothX, smoothY],
   );
 
   return (
@@ -263,7 +245,7 @@ export function SinematicSceneProvider({
   navItems = [],
   initialSectionId = null,
 }) {
-  const { scrollYProgress, lite } = useSinematicMotion();
+  const { scrollYProgress } = useSinematicMotion();
   const validIds = useMemo(() => navItems.map((item) => item.id), [navItems]);
   const [activeId, setActiveId] = useState(() => {
     if (initialSectionId && validIds.includes(initialSectionId)) return initialSectionId;
@@ -271,7 +253,6 @@ export function SinematicSceneProvider({
   });
   const scenesRef = useRef(new Map());
   const rafRef = useRef(0);
-  const lastSyncRef = useRef(0);
   const restoredRef = useRef(false);
 
   const total = navItems.length;
@@ -368,11 +349,6 @@ export function SinematicSceneProvider({
 
   useEffect(() => {
     const onScroll = () => {
-      if (lite) {
-        const now = performance.now();
-        if (now - lastSyncRef.current < 90) return;
-        lastSyncRef.current = now;
-      }
       scheduleSync();
     };
     const onResize = () => scheduleSync();
@@ -384,7 +360,7 @@ export function SinematicSceneProvider({
       window.removeEventListener('resize', onResize);
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
     };
-  }, [scheduleSync, navItems, lite]);
+  }, [scheduleSync, navItems]);
 
   const selectNav = useCallback((id) => {
     const target =
@@ -392,8 +368,8 @@ export function SinematicSceneProvider({
       document.querySelector(`[data-scene="${id}"]`);
     if (!target) return;
     setActiveId(id);
-    target.scrollIntoView({ behavior: lite ? 'auto' : 'smooth', block: 'start' });
-  }, [lite]);
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -406,7 +382,6 @@ export function SinematicSceneProvider({
       registerScene,
       unregisterScene,
       scrollYProgress,
-      lite,
     }),
     [
       activeId,
@@ -417,7 +392,6 @@ export function SinematicSceneProvider({
       registerScene,
       unregisterScene,
       scrollYProgress,
-      lite,
     ],
   );
 

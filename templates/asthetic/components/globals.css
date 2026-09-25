@@ -188,7 +188,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .aesthetic-hero-copy { display: grid; gap: 1.25rem; }
 .aesthetic-eyebrow, .aesthetic-location, .portrait-caption, .aesthetic-scroll-cue, .aesthetic-designation { font: 600 var(--a-label-size)/1.6 var(--a-sans); letter-spacing: .14em; text-transform: uppercase; }
 .aesthetic-eyebrow { color: var(--a-brass-soft); }
-.aesthetic-name { margin: 0; font: 400 clamp(3rem, 7vw, 7rem)/.9 var(--a-serif); letter-spacing: -.07em; }
+.aesthetic-name { margin: 0; font: 400 clamp(2.4rem, 5.5vw, 4.6rem)/.95 var(--a-serif); letter-spacing: -.05em; }
 .aesthetic-designation { min-height: 1.6rem; margin-top: 1rem; color: var(--a-brass-soft); }
 .aesthetic-summary { max-width: 38rem; margin: 0; color: color-mix(in srgb, var(--a-text) 78%, transparent); font-size: clamp(var(--a-body-size), 1.35vw, 1.15rem); line-height: 1.8; }
 .aesthetic-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
@@ -200,7 +200,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .aesthetic-portrait-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; filter: sepia(.12) contrast(1.05); }
 .aesthetic-portrait-orbit { position: absolute; right: 1%; top: 28%; width: 9px; height: 9px; border-radius: 50%; background: var(--a-brass-soft); box-shadow: 0 0 0 5px rgba(224, 194, 151, .16); }
 .portrait-caption { display: block; margin-top: 1.8rem; color: var(--a-muted); }
-.aesthetic-avatar-placeholder { display: grid; place-items: center; aspect-ratio: 1; border: 1px solid var(--a-brass); border-radius: 50%; color: var(--a-brass-soft); font-size: 5rem; }
+.aesthetic-avatar-placeholder { display: grid; place-items: center; aspect-ratio: 1; border: 1px solid var(--a-brass); border-radius: 50%; color: var(--a-brass-soft); font-size: 3.25rem; }
 .aesthetic-scroll-cue { display: flex; grid-column: 1 / -1; align-items: center; gap: .7rem; width: fit-content; color: var(--a-brass-soft); transition: transform .25s ease; }
 .aesthetic-scroll-cue:hover { transform: translateX(5px); }
 .aesthetic-scroll-cue span:first-child { display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid var(--a-brass); border-radius: 50%; }
@@ -236,9 +236,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .aesthetic-about-availability { color: var(--a-brass); text-align: right; }
 .aesthetic-about-avatar { display: grid; place-items: center; aspect-ratio: 4 / 5; margin: 1rem 0; overflow: hidden; border: 1px solid var(--a-brass); border-radius: 10px; background: radial-gradient(circle at 50% 35%, rgba(194, 154, 100, .18), transparent 55%), var(--a-ink-soft); }
 .aesthetic-about-avatar img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.1) contrast(1.05); }
-.aesthetic-about-initials { color: var(--a-brass-soft); font: 400 clamp(3rem, 8vw, 6rem)/1 var(--a-serif); letter-spacing: -.08em; }
+.aesthetic-about-initials { color: var(--a-brass-soft); font: 400 clamp(2.2rem, 6vw, 4rem)/1 var(--a-serif); letter-spacing: -.06em; }
 .aesthetic-about-content { display: grid; gap: clamp(1.8rem, 4vw, 3rem); padding-top: clamp(1rem, 3vw, 3rem); }
-.aesthetic-about-intro h2 { max-width: 12ch; margin: 0 0 1.2rem; font: 400 clamp(2.4rem, 5.8vw, 5.4rem)/.95 var(--a-serif); letter-spacing: -.06em; }
+.aesthetic-about-intro h2 { max-width: 14ch; margin: 0 0 1.2rem; font: 400 clamp(1.9rem, 4.4vw, 3.4rem)/1.05 var(--a-serif); letter-spacing: -.04em; }
 .aesthetic-about-copy, .aesthetic-grid-card p, .aesthetic-timeline-card p, .aesthetic-compact-row p { color: var(--a-muted); line-height: 1.8; }
 .aesthetic-about-record { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; border-block: 1px solid var(--a-line); }
 .aesthetic-about-record div { display: grid; gap: .45rem; padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--a-line); }
@@ -319,7 +319,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .aesthetic-contact { background-image: linear-gradient(90deg, rgba(32, 43, 46, .96), rgba(32, 43, 46, .72)), url('/asthetic/asthetic03.png'); background-position: center; background-size: cover; }
 .aesthetic-light .aesthetic-contact { background-image: linear-gradient(90deg, rgba(255, 250, 241, .96), rgba(255, 250, 241, .74)), url('/asthetic/asthetic04.png'); }
 .aesthetic-contact-layout { display: grid; grid-template-columns: minmax(220px, .75fr) minmax(0, 1.25fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
-.aesthetic-contact-copy h2 { margin: .4rem 0 .8rem; font: 400 clamp(2rem, 4vw, 3.4rem)/1 var(--a-serif); }
+.aesthetic-contact-copy h2 { margin: .4rem 0 .8rem; font: 400 clamp(1.7rem, 3.2vw, 2.6rem)/1.1 var(--a-serif); }
 .aesthetic-contact-copy > p:last-child { max-width: 25rem; color: var(--a-muted); line-height: 1.7; }
 .aesthetic-contact-form form { display: grid; gap: 1rem; }
 .aesthetic-form-row { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; align-items: center; margin: 0; color: var(--a-brass); font: var(--a-label-size) var(--a-sans); }
@@ -352,8 +352,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .aesthetic-stats { grid-row: 4; grid-template-columns: repeat(2, 1fr); }
   .aesthetic-stats div:nth-child(2) { border-right: 0; }
   .aesthetic-stats div:nth-child(-n + 2) { border-bottom: 1px solid var(--a-line); }
-  .aesthetic-name { font-size: clamp(3rem, 16vw, 5rem); line-height: .9; }
-  .aesthetic-about-intro h2 { font-size: clamp(2rem, 10vw, 3.5rem); }
+  .aesthetic-name { font-size: clamp(2.2rem, 11vw, 3.35rem); line-height: .95; }
+  .aesthetic-about-intro h2 { font-size: clamp(1.7rem, 8vw, 2.6rem); }
   .aesthetic-about-shell, .aesthetic-contact-layout { grid-template-columns: 1fr; gap: 2rem; }
   .aesthetic-about-identity { position: static; }
   .aesthetic-about-avatar { max-width: none; aspect-ratio: auto; min-height: 0; padding: .5rem; }
@@ -369,8 +369,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .aesthetic-timeline-minimal .aesthetic-timeline-marker { grid-row: 1; }
   .aesthetic-compact-row, .aesthetic-form-row { grid-template-columns: 1fr; }
   .aesthetic-form-row { gap: .35rem; }
-  .aesthetic-name { font-size: clamp(3rem, 16vw, 5rem); line-height: .9; }
-  .aesthetic-about-intro h2 { font-size: clamp(2rem, 10vw, 3.5rem); }
+  .aesthetic-name { font-size: clamp(2.2rem, 11vw, 3.35rem); line-height: .95; }
+  .aesthetic-about-intro h2 { font-size: clamp(1.7rem, 8vw, 2.6rem); }
   .aesthetic-footer { flex-wrap: wrap; }
   .footer-copy { width: 100%; margin: 0; }
   .section-heading { display: grid; gap: .5rem; }

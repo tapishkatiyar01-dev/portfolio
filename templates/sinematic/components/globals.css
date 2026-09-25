@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
 
 /* Anamorphic Scope — cinema-night screening portfolio
-   Atmospheric slate void + tungsten practical + teal gel instrumentation.
-   Signature: letterbox + title-card hero + projection beam. */
+   Atmospheric slate void + letterbox + title-card hero. */
 
 :root {
   --s-bg: #0a1018;
@@ -101,10 +100,6 @@ textarea:focus-visible {
   inset: -6%;
   overflow: hidden;
   transform: translateZ(0);
-}
-
-html:not(.sinematic-lite) .sn-void-stage {
-  will-change: transform;
 }
 
 .sn-void-base {
@@ -670,10 +665,6 @@ html.sinematic-lut-noir .sinematic-cinematic-bg {
   filter: grayscale(1) contrast(1.18) brightness(0.92);
 }
 
-html.sinematic-lut-day .sinematic-cinematic-bg {
-  filter: brightness(1.1) saturate(1.2) hue-rotate(10deg);
-}
-
 html.sinematic-lut-cyan .sinematic-cinematic-bg {
   filter: saturate(1.2) hue-rotate(8deg) brightness(1.04);
 }
@@ -681,7 +672,6 @@ html.sinematic-lut-cyan .sinematic-cinematic-bg {
 @media (prefers-reduced-motion: reduce) {
   html.sinematic-lut-amber .sinematic-cinematic-bg,
   html.sinematic-lut-noir .sinematic-cinematic-bg,
-  html.sinematic-lut-day .sinematic-cinematic-bg,
   html.sinematic-lut-cyan .sinematic-cinematic-bg {
     filter: none;
   }
@@ -1189,7 +1179,7 @@ html.sinematic-lut-cyan .sinematic-cinematic-bg {
 .sinematic-hero h1 {
   margin: 0;
   overflow: hidden;
-  font: 800 clamp(3.2rem, 9vw, 6.4rem) / 0.92 var(--s-display);
+  font: 800 clamp(2.35rem, 6.5vw, 4.4rem) / 0.96 var(--s-display);
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--s-text);
@@ -1267,7 +1257,7 @@ html.sinematic-lut-cyan .sinematic-cinematic-bg {
   width: 100%;
   height: 100%;
   color: var(--s-amber);
-  font: 800 4rem / 1 var(--s-display);
+  font: 800 2.75rem / 1 var(--s-display);
   letter-spacing: 0.06em;
   background:
     linear-gradient(160deg, rgba(var(--s-cyan-rgb), 0.12), transparent 50%),
@@ -1625,7 +1615,7 @@ html.sinematic-lut-cyan .sinematic-cinematic-bg {
   place-items: center;
   height: 100%;
   color: var(--s-amber);
-  font-size: 4rem;
+  font-size: 2.75rem;
   font-weight: 700;
 }
 
@@ -1640,7 +1630,7 @@ html.sinematic-lut-cyan .sinematic-cinematic-bg {
 h2 {
   margin: 0.2rem 0 1rem;
   font-family: var(--s-display);
-  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-size: clamp(1.65rem, 3.6vw, 2.7rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -2227,11 +2217,6 @@ h2 em {
     display: none !important;
   }
 
-  html.sinematic-lite .sn-bg-sweep,
-  html.sinematic-lite .sn-bg-depth {
-    display: none !important;
-  }
-
   .sn-letterbox {
     height: var(--s-letterbox);
   }
@@ -2430,7 +2415,7 @@ h2 em {
   }
 
   .sinematic-hero h1 {
-    font-size: clamp(2.7rem, 12.5vw, 3.75rem);
+    font-size: clamp(2.1rem, 10vw, 2.95rem);
     line-height: 0.9;
     text-wrap: balance;
   }
@@ -2590,7 +2575,7 @@ h2 em {
   }
 
   .sinematic-hero h1 {
-    font-size: clamp(2.35rem, 12vw, 3.1rem);
+    font-size: clamp(1.9rem, 10vw, 2.55rem);
   }
 
   .sinematic-role {

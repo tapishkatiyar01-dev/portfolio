@@ -831,7 +831,7 @@
 
 .kinetic-hero h1 {
   margin: 0;
-  font-size: clamp(3.2rem, 13vw, 5.8rem);
+  font-size: clamp(2.4rem, 9vw, 4.15rem);
   line-height: 0.92;
   letter-spacing: -0.045em;
   font-weight: 800;
@@ -1027,7 +1027,7 @@
   place-items: center;
   width: 100%;
   height: 100%;
-  font-size: clamp(2.8rem, 10vw, 4rem);
+  font-size: clamp(2.1rem, 7.5vw, 3.1rem);
   font-weight: 800;
   color: var(--kinetic-accent);
   font-family: var(--kinetic-mono);
@@ -1144,7 +1144,7 @@
 .kinetic-section-head h2,
 .kinetic-panel h2 {
   margin: 0.35rem 0 0;
-  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  font-size: clamp(1.75rem, 4.2vw, 2.7rem);
   letter-spacing: -0.04em;
   line-height: 1.05;
   font-weight: 800;
@@ -1210,7 +1210,7 @@
 
 .kinetic-about-title {
   margin: 0.65rem 0 0;
-  font-size: clamp(2.25rem, 5vw, 3.8rem);
+  font-size: clamp(1.75rem, 4vw, 2.7rem);
   line-height: 1.08;
   letter-spacing: -0.04em;
   font-weight: 800;
@@ -2167,7 +2167,7 @@
   }
 
   .kinetic-hero h1 {
-    font-size: clamp(4.85rem, 8.5vw, 7.5rem);
+    font-size: clamp(3.2rem, 6.2vw, 5rem);
   }
 
   .kinetic-role strong {

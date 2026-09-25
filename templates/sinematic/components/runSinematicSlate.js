@@ -2,19 +2,10 @@
 
 /**
  * Director's slate command runner — sinematic cousin of terminal / arcade cheats.
- * Jobs: go (take/cut), look (lut / gel), play (grain / clap / roll).
+ * Jobs: go (take/cut), play (grain / clap / roll).
  */
 
-import {
-  SINEMATIC_PROJECTION_PALETTES,
-  applyNeonGelMode,
-  applyProjectionPalette,
-  cycleProjectionPalette,
-  isNeonGelMode,
-  normalizeProjectionPalette,
-} from './sceneConfig';
-
-const LUTS = ['amber', 'cyan', 'noir', 'day', 'reset', 'default'];
+const LUTS = ['amber', 'cyan', 'noir', 'reset', 'default'];
 
 const LUT_VARS = {
   amber: {
@@ -35,12 +26,6 @@ const LUT_VARS = {
     '--s-amber': '#b0b8c0',
     '--s-line': 'rgba(200, 208, 216, 0.28)',
   },
-  day: {
-    '--s-cyan': '#67e8f9',
-    '--s-cyan-strong': '#22d3ee',
-    '--s-amber': '#fbbf24',
-    '--s-line': 'rgba(103, 232, 249, 0.32)',
-  },
 };
 
 const DEFAULT_LUT_VARS = LUT_VARS.cyan;
@@ -50,7 +35,6 @@ function clearLutClasses() {
     'sinematic-lut-amber',
     'sinematic-lut-cyan',
     'sinematic-lut-noir',
-    'sinematic-lut-day',
   );
 }
 
@@ -104,7 +88,7 @@ export function runSinematicSlate({ input, navItems, personal, selectNav }) {
 
   if (action === 'help' || action === '?') {
     return {
-      status: 'take · cut · lut · gel [neon|amber|teal|…] · grain · whoami · clap · roll · reset',
+      status: 'take · cut · lut · grain · whoami · clap · roll · reset',
     };
   }
 
@@ -128,42 +112,13 @@ export function runSinematicSlate({ input, navItems, personal, selectNav }) {
   if (action === 'lut' || action === 'grade') {
     const name = (restLower || 'cyan').split(/\s+/)[0];
     if (!LUTS.includes(name) && name !== 'default') {
-      return { status: 'luts: amber cyan noir day reset' };
+      return { status: 'luts: amber cyan noir reset' };
     }
     applyLut(name);
     signalOk(`LUT ${name === 'reset' || name === 'default' ? 'cyan' : name}`);
     return {
       status: `lut · ${name === 'reset' || name === 'default' ? 'cyan' : name}`,
     };
-  }
-
-  if (action === 'gel' || action === 'palette' || action === 'lamp') {
-    const token = (restLower || 'next').split(/\s+/)[0];
-    if (isNeonGelMode(token)) {
-      applyNeonGelMode(document.documentElement.dataset.projectionPalette || 'amber');
-      signalOk('GEL NEON');
-      return { status: 'gel · neon · advances per section' };
-    }
-    if (token === 'next' || token === 'cycle' || !token) {
-      const current = document.documentElement.dataset.projectionPalette || 'amber';
-      const next = cycleProjectionPalette(current);
-      signalOk(`GEL ${next}`);
-      return { status: `gel · ${next} · locked` };
-    }
-    if (token === 'list' || token === 'help') {
-      return {
-        status: `gels: neon ${SINEMATIC_PROJECTION_PALETTES.join(' ')}`,
-      };
-    }
-    const named = normalizeProjectionPalette(token);
-    if (!named) {
-      return {
-        status: `gels: neon ${SINEMATIC_PROJECTION_PALETTES.join(' ')}`,
-      };
-    }
-    applyProjectionPalette(named);
-    signalOk(`GEL ${named}`);
-    return { status: `gel · ${named} · locked` };
   }
 
   if (action === 'grain') {
@@ -203,9 +158,8 @@ export function runSinematicSlate({ input, navItems, personal, selectNav }) {
     clearLutClasses();
     applyLutVars(DEFAULT_LUT_VARS);
     document.documentElement.classList.remove('sinematic-grain-on', 'sinematic-grain-off');
-    applyNeonGelMode('amber');
     signalOk('RESET');
-    return { status: 'production reset · cyan lut · neon gel · grain default' };
+    return { status: 'production reset · cyan lut · grain default' };
   }
 
   // Shorthand: bare number or scene name → take

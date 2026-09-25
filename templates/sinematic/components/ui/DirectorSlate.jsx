@@ -13,7 +13,7 @@ export default function DirectorSlate({ personal }) {
   const reduced = useReducedMotion();
   const tap = sinematicTapMotion(reduced);
   const [cue, setCue] = useState('');
-  const [status, setStatus] = useState('slate · take 01 / lut cyan / gel neon');
+  const [status, setStatus] = useState('slate · take 01');
   const [flash, setFlash] = useState('');
   const [open, setOpen] = useState(false);
   const inputRef = useRef(null);
@@ -144,7 +144,7 @@ export default function DirectorSlate({ personal }) {
                 className="sn-slate-input"
                 value={cue}
                 onChange={(event) => setCue(event.target.value)}
-                placeholder="take about · gel neon · gel teal · lut noir"
+                placeholder="take about · grain · roll"
                 autoComplete="off"
                 spellCheck={false}
                 enterKeyHint="go"
