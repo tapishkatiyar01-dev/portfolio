@@ -175,7 +175,7 @@ export default function SectionTabs({
         id="kineticstage-tabpanel"
         aria-labelledby={`kineticstage-tab-${activeTab}`}
       >
-        {panel}
+        <div key={activeTab}>{panel}</div>
       </div>
     </div>
   );
