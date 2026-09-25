@@ -243,17 +243,12 @@ export function useSinematicMotion() {
 export function SinematicSceneProvider({
   children,
   navItems = [],
-  initialSectionId = null,
 }) {
   const { scrollYProgress } = useSinematicMotion();
   const validIds = useMemo(() => navItems.map((item) => item.id), [navItems]);
-  const [activeId, setActiveId] = useState(() => {
-    if (initialSectionId && validIds.includes(initialSectionId)) return initialSectionId;
-    return navItems[0]?.id || 'home';
-  });
+  const [activeId, setActiveId] = useState(() => navItems[0]?.id || 'home');
   const scenesRef = useRef(new Map());
   const rafRef = useRef(0);
-  const restoredRef = useRef(false);
 
   const total = navItems.length;
   const activeIndex = Math.max(
@@ -270,32 +265,16 @@ export function SinematicSceneProvider({
     setPersistedSectionId('sinematic', activeId);
   }, [activeId]);
 
-  useEffect(() => {
-    if (restoredRef.current || typeof window === 'undefined') return undefined;
-    const targetId =
-      initialSectionId && validIds.includes(initialSectionId)
-        ? initialSectionId
-        : null;
-    if (!targetId || targetId === 'home') {
-      restoredRef.current = true;
-      return undefined;
-    }
-    const timer = window.setTimeout(() => {
-      const node =
-        document.getElementById(targetId) ||
-        document.querySelector(`[data-scene="${targetId}"]`);
-      if (node) {
-        node.scrollIntoView({ behavior: 'auto', block: 'start' });
-        setActiveId(targetId);
-      }
-      restoredRef.current = true;
-    }, 100);
-    return () => window.clearTimeout(timer);
-  }, [initialSectionId, validIds]);
-
   const syncActiveFromScroll = useCallback(() => {
     const viewportH = window.innerHeight || 1;
-    // Focus band in the upper-middle of the viewport (matches HUD “current take”)
+    const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+
+    // Title card owns the top of the page — never treat About as current here.
+    if (scrollY <= 80 && validIds.includes('home')) {
+      setActiveId((prev) => (prev === 'home' ? prev : 'home'));
+      return;
+    }
+
     const focusY = viewportH * 0.32;
     let bestId = null;
     let bestScore = -Infinity;
@@ -306,7 +285,6 @@ export function SinematicSceneProvider({
       const rect = node.getBoundingClientRect();
       if (rect.bottom <= 0 || rect.top >= viewportH) return;
 
-      // Prefer the scene whose content band covers the focus line
       const coversFocus = rect.top <= focusY && rect.bottom >= focusY;
       const mid = rect.top + Math.min(rect.height * 0.35, 120);
       const dist = Math.abs(mid - focusY);
@@ -324,7 +302,7 @@ export function SinematicSceneProvider({
     if (bestId) {
       setActiveId((prev) => (prev === bestId ? prev : bestId));
     }
-  }, []);
+  }, [validIds]);
 
   const scheduleSync = useCallback(() => {
     if (rafRef.current) return;

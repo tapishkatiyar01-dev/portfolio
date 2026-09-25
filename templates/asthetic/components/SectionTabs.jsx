@@ -51,16 +51,6 @@ export default function SectionTabs({
     return () => window.removeEventListener('asthetic:select-tab', handleExternalTabChange);
   }, [tabs, setActiveTab]);
 
-  useEffect(() => {
-    if (!initialSectionId || initialSectionId === 'home') return undefined;
-    const timer = window.setTimeout(() => {
-      document
-        .getElementById('aesthetic-sections')
-        ?.scrollIntoView({ behavior: 'auto', block: 'start' });
-    }, 80);
-    return () => window.clearTimeout(timer);
-  }, [initialSectionId]);
-
   return (
     <motion.section
       className="aesthetic-sections"

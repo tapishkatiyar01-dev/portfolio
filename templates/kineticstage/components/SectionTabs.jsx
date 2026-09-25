@@ -61,16 +61,6 @@ export default function SectionTabs({
   }, [activeTab, setScene]);
 
   useEffect(() => {
-    if (!initialSectionId || initialSectionId === 'home') return undefined;
-    const timer = window.setTimeout(() => {
-      document
-        .getElementById('kineticstage-sections')
-        ?.scrollIntoView({ behavior: 'auto', block: 'start' });
-    }, 80);
-    return () => window.clearTimeout(timer);
-  }, [initialSectionId]);
-
-  useEffect(() => {
     const onSelect = (event) => {
       const id = event.detail;
       if (!tabs.some((tab) => tab.id === id)) return;

@@ -47,16 +47,6 @@ export default function SectionTabs({
     return () => window.removeEventListener('arcade:select-tab', handler);
   }, [tabs, setActive]);
 
-  useEffect(() => {
-    if (!initialSectionId || initialSectionId === 'home') return undefined;
-    const timer = window.setTimeout(() => {
-      document
-        .getElementById('arcade-sections')
-        ?.scrollIntoView({ behavior: 'auto', block: 'start' });
-    }, 80);
-    return () => window.clearTimeout(timer);
-  }, [initialSectionId]);
-
   const section = Sections.find((item) => item.id === active);
   const stageLabel = String(tabs.findIndex((tab) => tab.id === active) + 1).padStart(2, '0');
 

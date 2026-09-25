@@ -1,8 +1,6 @@
 'use client';
 
-/**
- * Static cinema void — no projection lamps, gels, or lite-mode switching.
- */
+/** Static cinema void. */
 export default function CinematicBackground() {
   return (
     <div className="sinematic-cinematic-bg">

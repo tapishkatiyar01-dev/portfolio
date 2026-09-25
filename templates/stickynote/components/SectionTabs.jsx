@@ -43,16 +43,6 @@ export default function SectionTabs({
     return () => window.removeEventListener('stickynote:select-tab', selectTab);
   }, [tabs, setActiveTab]);
 
-  useEffect(() => {
-    if (!initialSectionId || initialSectionId === 'home') return undefined;
-    const timer = window.setTimeout(() => {
-      document
-        .getElementById('stickynote-sections')
-        ?.scrollIntoView({ behavior: 'auto', block: 'start' });
-    }, 80);
-    return () => window.clearTimeout(timer);
-  }, [initialSectionId]);
-
   return (
     <motion.section
       ref={ref}

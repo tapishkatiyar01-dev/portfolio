@@ -16,7 +16,6 @@ export default function Layout({
   socials,
   skills = [],
   Sections = [],
-  initialSectionId = null,
 }) {
   useEmailJsKeepalive();
   const navItems = useMemo(
@@ -36,7 +35,7 @@ export default function Layout({
 
   return (
     <SinematicMotionProvider>
-      <SinematicSceneProvider navItems={navItems} initialSectionId={initialSectionId}>
+      <SinematicSceneProvider navItems={navItems}>
         <div className="sinematic-app">
           <CinematicBackground />
           <FilmGrain />

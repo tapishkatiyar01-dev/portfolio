@@ -34,7 +34,7 @@ export default function Hero({
       index={0}
       label="Home"
       recipe="heroExit"
-      anchor
+      anchor={false}
     >
       <section className="sinematic-hero">
         <div className="sinematic-hero-grid">
