@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Night mountain sky gradient -->
+    <linearGradient id="mt-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020406"/>
+      <stop offset="25%" stop-color="#040c1a"/>
+      <stop offset="55%" stop-color="#081a35"/>
+      <stop offset="80%" stop-color="#0e2448"/>
+      <stop offset="100%" stop-color="#142a52"/>
+    </linearGradient>
+
+    <!-- Mountain layers: distant, mid, near -->
+    <!-- Snow cap shimmer -->
+    <linearGradient id="snow-cap" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#c8d8f0"/>
+      <stop offset="35%" stop-color="#8aaad0"/>
+      <stop offset="100%" stop-color="#2a4878"/>
+    </linearGradient>
+
+    <!-- Atmospheric mist between mountain layers -->
+    <linearGradient id="mist-layer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a3565" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#1e3e70" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0e2040" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- Moon glow halo -->
+    <radialGradient id="mt-moon-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d0e4ff" stop-opacity="0.55"/>
+      <stop offset="30%" stop-color="#a0c0f0" stop-opacity="0.2"/>
+      <stop offset="65%" stop-color="#6090d0" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#204080" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Moon disc -->
+    <radialGradient id="mt-moon" cx="38%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#eef5ff"/>
+      <stop offset="55%" stop-color="#dce8ff"/>
+      <stop offset="100%" stop-color="#b8d0f0"/>
+    </radialGradient>
+
+    <!-- Milky Way -->
+    <linearGradient id="mt-milky" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#6080c8" stop-opacity="0"/>
+      <stop offset="25%" stop-color="#8098e0" stop-opacity="0.14"/>
+      <stop offset="50%" stop-color="#a0b4f5" stop-opacity="0.24"/>
+      <stop offset="75%" stop-color="#8098e0" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#6080c8" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Pine forest fill -->
+    <linearGradient id="pine-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#040e18"/>
+      <stop offset="100%" stop-color="#020810"/>
+    </linearGradient>
+
+    <!-- Ground/valley -->
+    <linearGradient id="valley-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1828"/>
+      <stop offset="100%" stop-color="#020810"/>
+    </linearGradient>
+
+    <!-- Soft glow -->
+    <filter id="mt-glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Atmosphere haze -->
+    <filter id="atmo-haze">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+
+    <!-- Mountain edge softness -->
+    <filter id="mt-edge">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+
+    <!-- Star blur -->
+    <filter id="mt-star">
+      <feGaussianBlur stdDeviation="0.8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <clipPath id="mt-clip">
+      <rect width="1440" height="900"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#mt-clip)">
+
+    <!-- Sky -->
+    <rect width="1440" height="900" fill="url(#mt-sky)"/>
+
+    <!-- Milky Way -->
+    <ellipse cx="720" cy="280" rx="650" ry="820" fill="url(#mt-milky)" transform="rotate(-28 720 280)"/>
+    <ellipse cx="680" cy="240" rx="480" ry="600" fill="url(#mt-milky)" opacity="0.55" transform="rotate(-28 680 240)"/>
+
+    <!-- ── Stars — full density ── -->
+    <g fill="#c0d4f0" opacity="0.5" filter="url(#mt-star)">
+      <!-- Row 1 -->
+      <circle cx="35" cy="18" r="0.6"/><circle cx="92" cy="35" r="0.5"/><circle cx="158" cy="22" r="0.7"/>
+      <circle cx="218" cy="42" r="0.5"/><circle cx="285" cy="15" r="0.8"/><circle cx="345" cy="38" r="0.6"/>
+      <circle cx="408" cy="24" r="0.5"/><circle cx="468" cy="52" r="0.7"/><circle cx="532" cy="18" r="0.6"/>
+      <circle cx="592" cy="42" r="0.5"/><circle cx="655" cy="28" r="0.8"/><circle cx="715" cy="48" r="0.6"/>
+      <circle cx="778" cy="22" r="0.5"/><circle cx="838" cy="38" r="0.7"/><circle cx="902" cy="15" r="0.6"/>
+      <circle cx="962" cy="45" r="0.5"/><circle cx="1025" cy="28" r="0.8"/><circle cx="1085" cy="52" r="0.6"/>
+      <circle cx="1148" cy="18" r="0.5"/><circle cx="1208" cy="38" r="0.7"/><circle cx="1272" cy="24" r="0.6"/>
+      <circle cx="1332" cy="48" r="0.5"/><circle cx="1395" cy="32" r="0.8"/><circle cx="1428" cy="55" r="0.6"/>
+      <!-- Row 2 -->
+      <circle cx="62" cy="72" r="0.5"/><circle cx="122" cy="88" r="0.6"/><circle cx="188" cy="68" r="0.7"/>
+      <circle cx="248" cy="95" r="0.5"/><circle cx="312" cy="78" r="0.6"/><circle cx="372" cy="105" r="0.7"/>
+      <circle cx="435" cy="72" r="0.5"/><circle cx="495" cy="92" r="0.8"/><circle cx="558" cy="75" r="0.6"/>
+      <circle cx="618" cy="98" r="0.5"/><circle cx="682" cy="72" r="0.7"/><circle cx="742" cy="95" r="0.6"/>
+      <circle cx="805" cy="68" r="0.5"/><circle cx="865" cy="92" r="0.8"/><circle cx="928" cy="75" r="0.6"/>
+      <circle cx="988" cy="98" r="0.5"/><circle cx="1052" cy="72" r="0.7"/><circle cx="1112" cy="88" r="0.6"/>
+      <circle cx="1175" cy="65" r="0.5"/><circle cx="1235" cy="95" r="0.8"/><circle cx="1298" cy="72" r="0.6"/>
+      <circle cx="1358" cy="88" r="0.5"/><circle cx="1422" cy="68" r="0.7"/>
+      <!-- Rows 3-5 -->
+      <circle cx="45" cy="128" r="0.6"/><circle cx="108" cy="145" r="0.5"/><circle cx="172" cy="132" r="0.7"/>
+      <circle cx="235" cy="155" r="0.6"/><circle cx="298" cy="138" r="0.5"/><circle cx="362" cy="162" r="0.7"/>
+      <circle cx="425" cy="128" r="0.8"/><circle cx="488" cy="148" r="0.6"/><circle cx="552" cy="135" r="0.5"/>
+      <circle cx="615" cy="158" r="0.7"/><circle cx="678" cy="132" r="0.6"/><circle cx="742" cy="152" r="0.5"/>
+      <circle cx="805" cy="138" r="0.8"/><circle cx="868" cy="158" r="0.6"/><circle cx="932" cy="128" r="0.5"/>
+      <circle cx="995" cy="148" r="0.7"/><circle cx="1058" cy="135" r="0.6"/><circle cx="1122" cy="155" r="0.5"/>
+      <circle cx="1185" cy="128" r="0.8"/><circle cx="1248" cy="148" r="0.6"/><circle cx="1312" cy="132" r="0.5"/>
+      <circle cx="1375" cy="155" r="0.7"/><circle cx="1432" cy="138" r="0.6"/>
+      <circle cx="75" cy="188" r="0.5"/><circle cx="138" cy="205" r="0.6"/><circle cx="202" cy="188" r="0.7"/>
+      <circle cx="265" cy="208" r="0.5"/><circle cx="328" cy="192" r="0.6"/><circle cx="392" cy="215" r="0.7"/>
+      <circle cx="455" cy="188" r="0.5"/><circle cx="518" cy="205" r="0.8"/><circle cx="582" cy="192" r="0.6"/>
+      <circle cx="645" cy="215" r="0.5"/><circle cx="708" cy="188" r="0.7"/><circle cx="772" cy="208" r="0.6"/>
+    </g>
+
+    <!-- Bright stars -->
+    <g filter="url(#mt-glow)">
+      <circle cx="125" cy="28" r="2.0" fill="#ffffff" opacity="0.9"/>
+      <circle cx="385" cy="18" r="1.8" fill="#fff0e0" opacity="0.88"/>
+      <circle cx="618" cy="38" r="2.2" fill="#ffffff" opacity="0.92"/>
+      <circle cx="855" cy="22" r="1.8" fill="#e0f0ff" opacity="0.86"/>
+      <circle cx="1088" cy="35" r="2.0" fill="#ffffff" opacity="0.9"/>
+      <circle cx="1325" cy="18" r="1.8" fill="#fff0e0" opacity="0.88"/>
+      <circle cx="252" cy="98" r="1.6" fill="#ffffff" opacity="0.82"/>
+      <circle cx="728" cy="85" r="1.8" fill="#e0f0ff" opacity="0.85"/>
+      <circle cx="1172" cy="95" r="1.6" fill="#ffffff" opacity="0.82"/>
+    </g>
+
+    <!-- ── Moon (upper right, full) ── -->
+    <circle cx="1155" cy="155" r="115" fill="url(#mt-moon-halo)"/>
+    <circle cx="1155" cy="155" r="65" fill="#4870b8" opacity="0.12" filter="url(#atmo-haze)"/>
+    <circle cx="1155" cy="155" r="42" fill="url(#mt-moon)" filter="url(#mt-glow)"/>
+    <!-- Moon surface craters -->
+    <circle cx="1145" cy="148" r="5.5" fill="#b0c8e8" opacity="0.22"/>
+    <circle cx="1162" cy="162" r="4" fill="#b0c8e8" opacity="0.18"/>
+    <circle cx="1150" cy="168" r="3" fill="#b0c8e8" opacity="0.14"/>
+
+    <!-- Moonlit cloud wisps -->
+    <g opacity="0.75" filter="url(#atmo-haze)">
+      <ellipse cx="1080" cy="230" rx="200" ry="48" fill="#0c1e35"/>
+      <ellipse cx="1120" cy="218" rx="140" ry="35" fill="#162840"/>
+      <ellipse cx="1200" cy="228" rx="160" ry="42" fill="#0c1e35"/>
+      <ellipse cx="1080" cy="215" rx="195" ry="22" fill="#243c65" opacity="0.3"/>
+    </g>
+
+    <!-- ── Mountain Layer 1: Far background (misty, barely visible) ── -->
+    <g opacity="0.55" filter="url(#atmo-haze)">
+      <path d="M0 545 L80 440 L175 500 L265 408 L360 468 L448 382 L545 442 L632 360 L728 420 L820 345 L915 408 L1008 328 L1102 392 L1195 315 L1290 378 L1382 295 L1440 345 L1440 600 L0 600Z"
+            fill="#10203c"/>
+    </g>
+
+    <!-- ── Mountain Layer 2: Mid (faint snow caps, atmospheric) ── -->
+    <g opacity="0.78">
+      <!-- Main mountain silhouette -->
+      <path d="M0 600 L45 520 L90 548 L148 468 L210 508 L272 428 L335 468 L398 388 L458 432 L520 355 L580 400 L642 328 L702 375 L762 308 L820 358 L878 285 L935 338 L992 268 L1048 325 L1105 252 L1162 312 L1218 238 L1275 298 L1332 225 L1388 285 L1440 215 L1440 640 L0 640Z"
+            fill="#0d1e38"/>
+      <!-- Snow cap tints (peaks) -->
+      <path d="M516 355 L548 305 L580 355Z" fill="#7a98c5" opacity="0.28"/>
+      <path d="M760 308 L792 262 L822 308Z" fill="#7a98c5" opacity="0.25"/>
+      <path d="M988 268 L1022 222 L1055 268Z" fill="#8aaad0" opacity="0.3"/>
+      <path d="M1215 238 L1248 192 L1280 238Z" fill="#8aaad0" opacity="0.28"/>
+      <path d="M1328 225 L1362 175 L1395 225Z" fill="#7a98c5" opacity="0.25"/>
+    </g>
+
+    <!-- ── Mountain Layer 3: Foreground (sharp, dark) ── -->
+    <g>
+      <path d="M0 660 L65 590 L128 620 L192 548 L255 582 L318 510 L382 548 L445 478 L508 518 L572 445 L635 485 L698 412 L762 452 L825 380 L888 425 L952 350 L1015 398 L1078 322 L1142 372 L1205 295 L1268 348 L1332 272 L1395 325 L1440 295 L1440 700 L0 700Z"
+            fill="#070f1e"/>
+    </g>
+
+    <!-- Atmospheric mist between mountain layers -->
+    <ellipse cx="720" cy="600" rx="900" ry="55" fill="#1a3565" opacity="0.28" filter="url(#atmo-haze)"/>
+    <ellipse cx="720" cy="640" rx="900" ry="45" fill="#1a3565" opacity="0.22" filter="url(#atmo-haze)"/>
+
+    <!-- ── Pine tree silhouette band ── -->
+    <!-- Pine forest: back edge (left) -->
+    <path d="M0 700 L0 660 L12 640 L24 660 L32 635 L44 660 L55 628 L68 655 L80 622 L95 650 L108 618 L122 648 L135 615 L150 645 L162 612 L178 642 L192 608 L208 638 L222 605 L238 632 L252 600 L268 628 L282 596 L298 625 L312 592 L328 622 L342 588 L358 618 L372 585 L388 615 L402 582 L418 612 L432 580 L445 610 L458 578 L470 608 L482 576 L495 606 L508 574 L521 604 L534 572 L548 602 L560 570 L575 600 L588 568 L602 598 L615 566 L628 596 L642 564 L655 594 L668 562 L682 592 L695 560 L708 590 L722 558 L735 588 L748 556 L762 585 L775 553 L788 582 L802 550 L815 580 L828 548 L842 578 L855 546 L868 576 L882 544 L895 574 L908 542 L922 572 L935 540 L948 570 L962 538 L975 568 L988 536 L1002 566 L1015 534 L1028 564 L1042 532 L1055 562 L1068 530 L1082 560 L1095 528 L1108 558 L1122 526 L1135 556 L1148 524 L1162 554 L1175 522 L1188 552 L1202 520 L1215 550 L1228 518 L1242 548 L1255 516 L1268 546 L1282 514 L1295 544 L1308 512 L1322 542 L1335 510 L1348 540 L1362 508 L1375 538 L1388 506 L1402 535 L1415 504 L1428 532 L1440 510 L1440 700Z"
+          fill="#040c18" opacity="0.97"/>
+
+    <!-- Pine forest: valley floor fill -->
+    <rect y="700" width="1440" height="200" fill="#020810"/>
+
+    <!-- ── Valley light glow (city below mountains) ── -->
+    <radialGradient id="valley-glow" cx="60%" cy="95%" r="50%">
+      <stop offset="0%" stop-color="#c05010" stop-opacity="0.42"/>
+      <stop offset="40%" stop-color="#602808" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#200e04" stop-opacity="0"/>
+    </radialGradient>
+    <rect y="650" width="1440" height="250" fill="url(#valley-glow)"/>
+
+    <!-- Distant valley lights (tiny dots) -->
+    <g fill="#ffaa30" opacity="0.7" filter="url(#mt-glow)">
+      <circle cx="750" cy="705" r="1.2"/><circle cx="780" cy="712" r="0.9"/><circle cx="810" cy="708" r="1.0"/>
+      <circle cx="842" cy="714" r="0.8"/><circle cx="870" cy="706" r="1.2"/><circle cx="895" cy="712" r="0.9"/>
+      <circle cx="920" cy="708" r="1.0"/><circle cx="948" cy="715" r="0.8"/><circle cx="975" cy="706" r="1.2"/>
+      <circle cx="1002" cy="712" r="0.9"/><circle cx="1028" cy="708" r="1.0"/><circle cx="1055" cy="714" r="0.8"/>
+      <circle cx="1080" cy="706" r="1.2"/><circle cx="1105" cy="712" r="0.9"/>
+      <circle cx="762" cy="718" r="0.8"/><circle cx="825" cy="722" r="1.0"/><circle cx="885" cy="720" r="0.8"/>
+      <circle cx="935" cy="724" r="1.0"/><circle cx="988" cy="720" r="0.8"/><circle cx="1042" cy="724" r="1.0"/>
+      <circle cx="1092" cy="720" r="0.8"/>
+    </g>
+
+    <!-- Overall vignette -->
+    <radialGradient id="mt-vignette" cx="50%" cy="45%" r="70%">
+      <stop offset="50%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#010204" stop-opacity="0.7"/>
+    </radialGradient>
+    <rect width="1440" height="900" fill="url(#mt-vignette)"/>
+
+  </g>
+</svg>

@@ -1,103 +1,128 @@
-import Image from "next/image";
+// app/page.js
+import { cookies } from 'next/headers';
+import { getPortfolioData } from '@/lib/portfolioRepository';
+import { readPortfolioPersistence } from '@/lib/portfolioCookies';
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+const TEMPLATES = [
+  'premium',
+  'terminal',
+  'asthetic',
+  'stickynote',
+  'sinematic',
+  'arcade',
+  'kinetic',
+  'kineticstage',
+];
+
+export default async function Home() {
+  const data = await getPortfolioData();
+  const { personal, socials, skills, Sections, data: rawData } = data;
+  // Normalize: premium/sinematic get paginated shape, others get plain arrays
+  const portfolioData = Object.fromEntries(
+    Object.entries(rawData).map(([key, value]) => [
+      key,
+      value && typeof value === 'object' && Array.isArray(value.items)
+        ? value
+        : { items: value || [], total: (value || []).length, hasMore: false },
+    ]),
+  );
+  const template = TEMPLATES.includes(data.template) ? data.template : 'premium';
+  const cookieStore = await cookies();
+  const persistence = readPortfolioPersistence(cookieStore, template);
+  const initialColorTheme = persistence.colorTheme;
+  const initialSectionId = persistence.sectionId;
+
+  const templateModules =
+    template === 'terminal'
+      ? await Promise.all([
+          import('@/templates/terminal/components/Hero'),
+          import('@/templates/terminal/components/Layout'),
+          import('@/templates/terminal/components/SectionTabs'),
+        ])
+      : template === 'asthetic'
+        ? await Promise.all([
+            import('@/templates/asthetic/components/Hero'),
+            import('@/templates/asthetic/components/Layout'),
+            import('@/templates/asthetic/components/SectionTabs'),
+          ])
+        : template === 'stickynote'
+          ? await Promise.all([
+              import('@/templates/stickynote/components/Hero'),
+              import('@/templates/stickynote/components/Layout'),
+              import('@/templates/stickynote/components/SectionTabs'),
+            ])
+          : template === 'sinematic'
+            ? await Promise.all([
+                import('@/templates/sinematic/components/Hero'),
+                import('@/templates/sinematic/components/Layout'),
+                import('@/templates/sinematic/components/SectionTabs'),
+              ])
+            : template === 'arcade'
+              ? await Promise.all([
+                  import('@/templates/arcade/components/Hero'),
+                  import('@/templates/arcade/components/Layout'),
+                  import('@/templates/arcade/components/SectionTabs'),
+                ])
+              : template === 'kinetic'
+                ? await Promise.all([
+                    import('@/templates/kinetic/components/Hero'),
+                    import('@/templates/kinetic/components/Layout'),
+                    import('@/templates/kinetic/components/SectionTabs'),
+                  ])
+                : template === 'kineticstage'
+                  ? await Promise.all([
+                      import('@/templates/kineticstage/components/Hero'),
+                      import('@/templates/kineticstage/components/Layout'),
+                      import('@/templates/kineticstage/components/SectionTabs'),
+                    ])
+                  : await Promise.all([
+                      import('@/templates/premium/components/Hero'),
+                      import('@/templates/premium/components/Layout'),
+                      import('@/templates/premium/components/SectionTabs'),
+                    ]);
+  const [ThemeHero, ThemeLayout, ThemeSections] = templateModules.map(
+    (module) => module.default,
+  );
+  const stats = personal.stats || (personal.traits || []).map((trait) => ({ value: trait }));
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <ThemeLayout
+      personal={personal}
+      socials={socials}
+      skills={skills}
+      Sections={Sections}
+      initialColorTheme={initialColorTheme}
+      initialSectionId={initialSectionId}
+    >
+      <section id="home">
+        <ThemeHero
+          name={personal.name}
+          designation={personal.designation}
+          headlines={personal.headlines}
+          summary={personal.summary}
+          email={personal.email}
+          resume={personal.resume}
+          location={personal.location}
+          logo={personal.Logo}
+          avatar={personal.Avatar}
+          stats={stats}
+          Sections={Sections}
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <section>
+        <ThemeSections
+          personal={personal}
+          socials={socials}
+          skills={skills}
+          Sections={Sections}
+          data={portfolioData}
+          initialSectionId={initialSectionId}
+          initialColorTheme={initialColorTheme}
+        />
+      </section>
+    </ThemeLayout>
   );
 }

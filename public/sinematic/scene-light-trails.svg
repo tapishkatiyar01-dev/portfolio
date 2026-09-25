@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Night mountain landscape gradient -->
+    <linearGradient id="lt-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020508"/>
+      <stop offset="40%" stop-color="#060e1c"/>
+      <stop offset="70%" stop-color="#0a1830"/>
+      <stop offset="100%" stop-color="#0f2040"/>
+    </linearGradient>
+
+    <!-- Road surface -->
+    <linearGradient id="road-surf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111820"/>
+      <stop offset="100%" stop-color="#1a2535"/>
+    </linearGradient>
+
+    <!-- Wet road reflection -->
+    <linearGradient id="road-reflect" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a6e" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0a1428" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <!-- Amber light trail (headlights) -->
+    <linearGradient id="trail-amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff9820" stop-opacity="0"/>
+      <stop offset="25%" stop-color="#ffb040" stop-opacity="0.7"/>
+      <stop offset="55%" stop-color="#ffc860" stop-opacity="0.95"/>
+      <stop offset="75%" stop-color="#ffe080" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#fff0a0" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <!-- Red tail-light trail -->
+    <linearGradient id="trail-red" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#cc1010" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#e82020" stop-opacity="0.75"/>
+      <stop offset="60%" stop-color="#ff3838" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff8060" stop-opacity="0.35"/>
+    </linearGradient>
+
+    <!-- Glow for light trails -->
+    <filter id="trail-glow" x="-20%" y="-200%" width="140%" height="500%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Soft glow for road reflection -->
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+
+    <!-- Mountain mist -->
+    <filter id="mist-blur">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+
+    <!-- Star glow -->
+    <filter id="star-glow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <clipPath id="lt-clip">
+      <rect width="1440" height="900"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#lt-clip)">
+
+    <!-- Sky -->
+    <rect width="1440" height="900" fill="url(#lt-sky)"/>
+
+    <!-- Stars (lighter density — partially obscured by mountains) -->
+    <g fill="#c8d8ff" opacity="0.5">
+      <circle cx="55" cy="25" r="0.7"/><circle cx="128" cy="42" r="0.5"/><circle cx="195" cy="18" r="0.8"/>
+      <circle cx="272" cy="38" r="0.6"/><circle cx="348" cy="22" r="0.7"/><circle cx="415" cy="52" r="0.5"/>
+      <circle cx="478" cy="32" r="0.8"/><circle cx="545" cy="18" r="0.6"/><circle cx="612" cy="45" r="0.7"/>
+      <circle cx="678" cy="28" r="0.5"/><circle cx="745" cy="55" r="0.8"/><circle cx="812" cy="22" r="0.6"/>
+      <circle cx="875" cy="42" r="0.7"/><circle cx="942" cy="18" r="0.5"/><circle cx="1008" cy="48" r="0.8"/>
+      <circle cx="1075" cy="32" r="0.6"/><circle cx="1142" cy="55" r="0.7"/><circle cx="1208" cy="25" r="0.5"/>
+      <circle cx="1275" cy="45" r="0.8"/><circle cx="1342" cy="22" r="0.6"/><circle cx="1405" cy="52" r="0.7"/>
+      <circle cx="88" cy="88" r="0.5"/><circle cx="165" cy="72" r="0.7"/><circle cx="238" cy="95" r="0.6"/>
+      <circle cx="312" cy="78" r="0.8"/><circle cx="388" cy="92" r="0.5"/><circle cx="458" cy="68" r="0.7"/>
+      <circle cx="525" cy="85" r="0.6"/><circle cx="595" cy="72" r="0.8"/><circle cx="662" cy="98" r="0.5"/>
+      <circle cx="732" cy="75" r="0.7"/><circle cx="798" cy="92" r="0.6"/><circle cx="865" cy="68" r="0.8"/>
+      <circle cx="932" cy="88" r="0.5"/><circle cx="998" cy="75" r="0.7"/><circle cx="1065" cy="95" r="0.6"/>
+      <circle cx="1132" cy="72" r="0.8"/><circle cx="1198" cy="88" r="0.5"/><circle cx="1265" cy="78" r="0.7"/>
+      <circle cx="1332" cy="95" r="0.6"/><circle cx="1395" cy="68" r="0.8"/>
+      <!-- Bright stars -->
+      <circle cx="228" cy="35" r="1.4" fill="#dde8ff"/><circle cx="502" cy="22" r="1.6" fill="#ffffff"/>
+      <circle cx="722" cy="48" r="1.4" fill="#dde8ff"/><circle cx="945" cy="28" r="1.6" fill="#ffffff"/>
+      <circle cx="1168" cy="42" r="1.4" fill="#dde8ff"/><circle cx="1385" cy="28" r="1.6" fill="#ffffff"/>
+    </g>
+
+    <!-- Moon (smaller, upper right) -->
+    <circle cx="1220" cy="110" r="62" fill="#a0b8e8" opacity="0.18" filter="url(#soft-glow)"/>
+    <circle cx="1220" cy="110" r="32" fill="#d8e8ff" opacity="0.82" filter="url(#star-glow)"/>
+
+    <!-- ── Mountain range: back layer (distant, misty) ── -->
+    <g opacity="0.72" filter="url(#mist-blur)">
+      <path d="M0 580 L80 460 L180 520 L260 420 L360 490 L440 390 L540 450 L620 350 L720 420 L800 360 L900 430 L980 340 L1080 410 L1160 330 L1260 400 L1340 320 L1440 390 L1440 900 L0 900Z"
+            fill="#0c2040"/>
+    </g>
+
+    <!-- Mountain range: mid layer -->
+    <g opacity="0.85">
+      <path d="M0 640 L60 540 L140 590 L240 490 L320 555 L420 465 L500 530 L580 450 L660 510 L740 440 L840 500 L920 430 L1000 490 L1080 420 L1180 480 L1260 410 L1360 475 L1440 420 L1440 900 L0 900Z"
+            fill="#071525"/>
+    </g>
+
+    <!-- Mountain range: front left silhouette (pine-covered) -->
+    <path d="M0 720 L0 680 C20 660 40 640 55 620 C70 600 78 585 85 570 C92 555 96 542 105 530 C114 518 120 508 128 498 C136 488 138 478 145 468 C152 458 155 448 160 438 C165 428 168 418 172 408 C176 398 178 392 183 386 C188 380 190 375 194 368 C198 361 200 354 205 350 C210 346 212 344 215 348 C218 352 220 358 225 368 C230 378 232 388 238 398 C244 408 248 418 255 430 C262 442 266 452 272 462 C278 472 282 484 285 492 C288 500 292 510 298 520 C304 530 308 545 315 560 C322 575 328 590 335 608 C342 626 348 640 355 655 C362 670 366 682 370 695 L370 720Z"
+          fill="#050e1a" opacity="0.95"/>
+
+    <!-- Pine tree silhouettes (left foreground) -->
+    <g fill="#030a12" opacity="0.98">
+      <!-- Pines along left mountain -->
+      <polygon points="20,720 30,680 40,720"/><polygon points="32,718 44,672 56,718"/>
+      <polygon points="18,720 28,665 38,720"/><polygon points="50,720 62,668 74,720"/>
+      <polygon points="65,720 78,660 91,720"/><polygon points="80,720 95,655 110,720"/>
+      <polygon points="100,720 116,648 132,720"/><polygon points="118,720 135,642 152,720"/>
+      <polygon points="138,720 158,638 178,720"/><polygon points="162,720 184,632 206,720"/>
+      <polygon points="188,720 212,625 236,720"/><polygon points="215,720 240,620 265,720"/>
+      <polygon points="245,720 272,615 299,720"/><polygon points="272,720 300,618 328,720"/>
+      <polygon points="300,720 328,622 356,720"/>
+    </g>
+
+    <!-- Pine tree silhouettes (right side) -->
+    <g fill="#030a12" opacity="0.95">
+      <polygon points="1080,720 1095,668 1110,720"/><polygon points="1100,720 1118,660 1136,720"/>
+      <polygon points="1125,720 1145,652 1165,720"/><polygon points="1152,720 1175,645 1198,720"/>
+      <polygon points="1182,720 1208,638 1234,720"/><polygon points="1215,720 1244,630 1273,720"/>
+      <polygon points="1248,720 1280,622 1312,720"/><polygon points="1282,720 1316,618 1350,720"/>
+      <polygon points="1318,720 1354,614 1390,720"/><polygon points="1358,720 1396,610 1434,720"/>
+      <polygon points="1395,720 1420,618 1440,696 1440,720"/>
+    </g>
+
+    <!-- ── Road ── curved winding road from bottom-left into distance -->
+    <!-- Road base -->
+    <path d="M160 900 C200 820 260 760 320 700 C380 640 440 595 490 555 C540 515 575 488 595 465 C615 442 618 428 610 418 C602 408 590 402 578 400"
+          fill="none" stroke="#1a2535" stroke-width="85" stroke-linecap="round"/>
+    <path d="M160 900 C200 820 260 760 320 700 C380 640 440 595 490 555 C540 515 575 488 595 465 C615 442 618 428 610 418 C602 408 590 402 578 400"
+          fill="none" stroke="#222e40" stroke-width="80" stroke-linecap="round"/>
+
+    <!-- Road wet-reflection shimmer -->
+    <path d="M160 900 C200 820 260 760 320 700 C380 640 440 595 490 555 C540 515 575 488 595 465 C615 442 618 428 610 418 C602 408 590 402 578 400"
+          fill="none" stroke="url(#road-reflect)" stroke-width="68" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Center lane divider dashes (white, faint) -->
+    <path d="M185 880 C220 820 275 758 330 695 C385 632 445 588 492 550 C539 512 573 487 593 464"
+          fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="18 22" opacity="0.22"/>
+
+    <!-- ── Light Trails ── -->
+
+    <!-- Amber headlights: bright inner trail -->
+    <path d="M148 900 C190 818 248 755 308 695 C368 635 428 590 480 550 C532 510 568 484 590 460"
+          fill="none" stroke="#ffd060" stroke-width="4" stroke-linecap="round"
+          opacity="0.95" filter="url(#trail-glow)"/>
+    <!-- Amber — outer softer glow -->
+    <path d="M148 900 C190 818 248 755 308 695 C368 635 428 590 480 550 C532 510 568 484 590 460"
+          fill="none" stroke="#ff9820" stroke-width="12" stroke-linecap="round"
+          opacity="0.45" filter="url(#trail-glow)"/>
+    <!-- Amber — wide bloom -->
+    <path d="M148 900 C190 818 248 755 308 695 C368 635 428 590 480 550 C532 510 568 484 590 460"
+          fill="none" stroke="#ffa030" stroke-width="28" stroke-linecap="round"
+          opacity="0.18" filter="url(#trail-glow)"/>
+
+    <!-- Second amber trail (parallel, slight offset) -->
+    <path d="M172 900 C212 820 268 758 326 698 C384 638 444 592 495 552 C546 512 579 486 600 462"
+          fill="none" stroke="#ffe090" stroke-width="3" stroke-linecap="round"
+          opacity="0.82" filter="url(#trail-glow)"/>
+    <path d="M172 900 C212 820 268 758 326 698 C384 638 444 592 495 552 C546 512 579 486 600 462"
+          fill="none" stroke="#ffb840" stroke-width="10" stroke-linecap="round"
+          opacity="0.35" filter="url(#trail-glow)"/>
+
+    <!-- Red tail-lights: bright core -->
+    <path d="M228 900 C268 820 322 758 378 700 C434 642 494 596 542 558 C590 520 620 495 635 472"
+          fill="none" stroke="#ff4040" stroke-width="3.5" stroke-linecap="round"
+          opacity="0.9" filter="url(#trail-glow)"/>
+    <!-- Red — outer glow -->
+    <path d="M228 900 C268 820 322 758 378 700 C434 642 494 596 542 558 C590 520 620 495 635 472"
+          fill="none" stroke="#cc1818" stroke-width="11" stroke-linecap="round"
+          opacity="0.42" filter="url(#trail-glow)"/>
+    <!-- Red — wide bloom -->
+    <path d="M228 900 C268 820 322 758 378 700 C434 642 494 596 542 558 C590 520 620 495 635 472"
+          fill="none" stroke="#cc1818" stroke-width="25" stroke-linecap="round"
+          opacity="0.18" filter="url(#trail-glow)"/>
+
+    <!-- Second red trail -->
+    <path d="M248 900 C286 820 338 758 392 700 C448 642 508 596 555 558 C602 520 630 495 645 472"
+          fill="none" stroke="#ff6868" stroke-width="2.5" stroke-linecap="round"
+          opacity="0.78" filter="url(#trail-glow)"/>
+
+    <!-- ── Guardrail glimmer (faint, left side of road) ── -->
+    <path d="M112 900 C155 818 215 755 278 694 C341 633 402 588 452 548 C502 508 540 484 562 462"
+          fill="none" stroke="#5588cc" stroke-width="1.2" opacity="0.22"/>
+
+    <!-- ── Foreground ground / asphalt edge ── -->
+    <path d="M0 900 L0 780 C60 770 100 755 140 740 C180 725 200 718 220 720 L370 720 L370 900Z"
+          fill="#030a12"/>
+    <path d="M1440 900 L1440 720 L1080 720 L1080 740 C1120 750 1180 768 1230 778 C1280 788 1350 795 1440 800Z"
+          fill="#030a12" opacity="0.9"/>
+
+    <!-- Ground fill bottom -->
+    <rect y="720" width="1440" height="180" fill="#020810"/>
+
+    <!-- Atmospheric mist at base of mountains -->
+    <ellipse cx="720" cy="700" rx="900" ry="60" fill="#0a1e38" opacity="0.45" filter="url(#mist-blur)"/>
+
+  </g>
+</svg>

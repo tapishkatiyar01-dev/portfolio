@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Deep night sky -->
+    <linearGradient id="cs-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#010306"/>
+      <stop offset="35%" stop-color="#040c18"/>
+      <stop offset="65%" stop-color="#081630"/>
+      <stop offset="100%" stop-color="#0c2040"/>
+    </linearGradient>
+
+    <!-- Lake water gradient -->
+    <linearGradient id="lake-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1e3a"/>
+      <stop offset="50%" stop-color="#061225"/>
+      <stop offset="100%" stop-color="#020810"/>
+    </linearGradient>
+
+    <!-- Amber city glow (warm overall light pollution) -->
+    <radialGradient id="city-glow-warm" cx="65%" cy="62%" r="45%">
+      <stop offset="0%" stop-color="#c06010" stop-opacity="0.55"/>
+      <stop offset="40%" stop-color="#804008" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#401c04" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Blue city glow (cool, distant) -->
+    <radialGradient id="city-glow-cool" cx="60%" cy="58%" r="38%">
+      <stop offset="0%" stop-color="#2050a0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#102040" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Water reflection glow -->
+    <radialGradient id="water-glow" cx="62%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#c05810" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#602808" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#201008" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Moon -->
+    <radialGradient id="cs-moon" cx="40%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#e8f2ff"/>
+      <stop offset="70%" stop-color="#c8dcff"/>
+      <stop offset="100%" stop-color="#a0b8e8"/>
+    </radialGradient>
+
+    <!-- Window light gradient -->
+    <linearGradient id="win-amber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffcc60"/>
+      <stop offset="100%" stop-color="#ff9020"/>
+    </linearGradient>
+
+    <!-- Water ripple effect -->
+    <filter id="water-ripple">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.06" numOctaves="2" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Soft glow -->
+    <filter id="cs-glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- City atmosphere blur -->
+    <filter id="city-haze">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+
+    <!-- Strong glow for bridge lights -->
+    <filter id="bridge-glow">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+
+    <!-- Mountain mist -->
+    <filter id="cs-mist">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+
+    <clipPath id="cs-clip">
+      <rect width="1440" height="900"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#cs-clip)">
+
+    <!-- Sky -->
+    <rect width="1440" height="900" fill="url(#cs-sky)"/>
+
+    <!-- Stars (sparse — light pollution reduces visibility) -->
+    <g fill="#b0c8e8" opacity="0.38">
+      <circle cx="48" cy="22" r="0.7"/><circle cx="125" cy="38" r="0.5"/><circle cx="198" cy="18" r="0.8"/>
+      <circle cx="275" cy="42" r="0.6"/><circle cx="352" cy="26" r="0.7"/><circle cx="428" cy="48" r="0.5"/>
+      <circle cx="505" cy="20" r="0.8"/><circle cx="582" cy="38" r="0.6"/><circle cx="658" cy="22" r="0.7"/>
+      <circle cx="105" cy="75" r="0.5"/><circle cx="182" cy="62" r="0.7"/><circle cx="258" cy="88" r="0.6"/>
+      <circle cx="335" cy="70" r="0.8"/><circle cx="412" cy="85" r="0.5"/><circle cx="488" cy="62" r="0.7"/>
+      <circle cx="562" cy="80" r="0.6"/>
+    </g>
+
+    <!-- Moon with halo -->
+    <circle cx="298" cy="145" r="95" fill="#3060a0" opacity="0.12" filter="url(#cs-mist)"/>
+    <circle cx="298" cy="145" r="52" fill="#a0b8d8" opacity="0.2" filter="url(#cs-glow)"/>
+    <circle cx="298" cy="145" r="28" fill="url(#cs-moon)" filter="url(#cs-glow)"/>
+
+    <!-- City warm glow overlay (light pollution) -->
+    <rect width="1440" height="900" fill="url(#city-glow-warm)"/>
+    <rect width="1440" height="900" fill="url(#city-glow-cool)"/>
+
+    <!-- ── Distant mountain silhouettes ── -->
+    <!-- Very back: misty far mountains (right side) -->
+    <path d="M680 445 L760 360 L840 415 L920 330 L1000 395 L1080 310 L1160 375 L1240 295 L1320 355 L1400 285 L1440 320 L1440 500 L680 500Z"
+          fill="#0e1e35" opacity="0.7" filter="url(#city-haze)"/>
+
+    <!-- Mid mountains (left) -->
+    <path d="M0 480 L60 400 L130 450 L210 370 L290 425 L370 355 L450 410 L520 345 L590 400 L650 355 L700 430 L700 500 L0 500Z"
+          fill="#0a1828" opacity="0.85" filter="url(#city-haze)"/>
+
+    <!-- ── Cityscape buildings ── -->
+    <!-- Back buildings row (shorter, hazier) -->
+    <g fill="#0c1e38" opacity="0.8" filter="url(#city-haze)">
+      <rect x="620" y="408" width="18" height="92"/>
+      <rect x="645" y="395" width="22" height="105"/>
+      <rect x="672" y="415" width="15" height="85"/>
+      <rect x="692" y="388" width="25" height="112"/>
+      <rect x="722" y="400" width="20" height="100"/>
+      <rect x="748" y="375" width="28" height="125"/>
+      <rect x="782" y="390" width="18" height="110"/>
+      <rect x="805" y="370" width="32" height="130"/>
+      <rect x="842" y="385" width="20" height="115"/>
+      <rect x="868" y="360" width="35" height="140"/>
+      <rect x="908" y="378" width="22" height="122"/>
+      <rect x="936" y="355" width="28" height="145"/>
+      <rect x="968" y="372" width="18" height="128"/>
+      <rect x="992" y="345" width="38" height="155"/>
+      <rect x="1035" y="368" width="25" height="132"/>
+      <rect x="1065" y="340" width="42" height="160"/>
+      <rect x="1112" y="360" width="22" height="140"/>
+      <rect x="1140" y="335" width="30" height="165"/>
+      <rect x="1175" y="355" width="20" height="145"/>
+      <rect x="1200" y="325" width="45" height="175"/>
+      <rect x="1250" y="348" width="28" height="152"/>
+      <rect x="1283" y="330" width="35" height="170"/>
+      <rect x="1322" y="350" width="22" height="150"/>
+      <rect x="1350" y="318" width="48" height="182"/>
+      <rect x="1402" y="342" width="38" height="158"/>
+    </g>
+
+    <!-- Front buildings row (taller, more defined) -->
+    <g fill="#0a1525">
+      <!-- Skyscraper cluster center-right -->
+      <rect x="880" y="340" width="38" height="160"/>
+      <rect x="922" y="298" width="52" height="202"/>
+      <rect x="978" y="320" width="42" height="180"/>
+      <rect x="1024" y="275" width="60" height="225"/>
+      <rect x="1088" y="305" width="45" height="195"/>
+      <rect x="1138" y="260" width="65" height="240"/>
+      <rect x="1208" y="292" width="48" height="208"/>
+      <rect x="1260" y="268" width="55" height="232"/>
+      <rect x="1320" y="282" width="42" height="218"/>
+      <rect x="1366" y="248" width="74" height="252"/>
+      <!-- Left city cluster -->
+      <rect x="620" y="375" width="35" height="125"/>
+      <rect x="660" y="352" width="45" height="148"/>
+      <rect x="710" y="368" width="38" height="132"/>
+      <rect x="752" y="335" width="52" height="165"/>
+      <rect x="808" y="350" width="40" height="150"/>
+      <rect x="852" y="325" width="48" height="175"/>
+    </g>
+
+    <!-- Building top antenna/spire details -->
+    <g fill="#0d1e35" stroke="#1a3060" stroke-width="0.5" opacity="0.9">
+      <line x1="948" y1="298" x2="948" y2="268"/><line x1="1054" y1="275" x2="1054" y2="240"/>
+      <line x1="1165" y1="260" x2="1165" y2="225"/><line x1="1287" y1="268" x2="1287" y2="232"/>
+      <line x1="1403" y1="248" x2="1403" y2="210"/>
+    </g>
+
+    <!-- ── Building windows ── amber lit -->
+    <g fill="#ffaa30" opacity="0.85" filter="url(#cs-glow)">
+      <!-- Scattered windows across buildings -->
+      <rect x="930" y="312" width="4" height="3"/><rect x="938" y="320" width="4" height="3"/>
+      <rect x="946" y="308" width="4" height="3"/><rect x="954" y="330" width="4" height="3"/>
+      <rect x="930" y="340" width="4" height="3"/><rect x="938" y="352" width="4" height="3"/>
+      <rect x="946" y="325" width="4" height="3"/><rect x="954" y="345" width="4" height="3"/>
+      <rect x="985" y="335" width="5" height="3"/><rect x="994" y="325" width="5" height="3"/>
+      <rect x="985" y="350" width="5" height="3"/><rect x="994" y="365" width="5" height="3"/>
+      <rect x="1032" y="290" width="5" height="3.5"/><rect x="1042" y="302" width="5" height="3.5"/>
+      <rect x="1052" y="288" width="5" height="3.5"/><rect x="1032" y="315" width="5" height="3.5"/>
+      <rect x="1042" y="328" width="5" height="3.5"/><rect x="1052" y="310" width="5" height="3.5"/>
+      <rect x="1032" y="342" width="5" height="3.5"/><rect x="1042" y="355" width="5" height="3.5"/>
+      <rect x="1148" y="275" width="6" height="3.5"/><rect x="1158" y="288" width="6" height="3.5"/>
+      <rect x="1168" y="272" width="6" height="3.5"/><rect x="1148" y="302" width="6" height="3.5"/>
+      <rect x="1158" y="315" width="6" height="3.5"/><rect x="1168" y="298" width="6" height="3.5"/>
+      <rect x="1148" y="330" width="6" height="3.5"/><rect x="1158" y="345" width="6" height="3.5"/>
+      <rect x="1268" y="282" width="5" height="3"/><rect x="1278" y="295" width="5" height="3"/>
+      <rect x="1268" y="310" width="5" height="3"/><rect x="1278" y="322" width="5" height="3"/>
+      <rect x="1268" y="335" width="5" height="3"/><rect x="1278" y="348" width="5" height="3"/>
+      <rect x="1375" y="262" width="6" height="4"/><rect x="1386" y="278" width="6" height="4"/>
+      <rect x="1396" y="260" width="6" height="4"/><rect x="1375" y="292" width="6" height="4"/>
+      <rect x="1386" y="308" width="6" height="4"/><rect x="1396" y="288" width="6" height="4"/>
+      <rect x="1375" y="322" width="6" height="4"/><rect x="1386" y="336" width="6" height="4"/>
+      <!-- Blue-white windows -->
+      <rect x="935" y="360" width="4" height="3" fill="#90b8ff"/>
+      <rect x="950" y="365" width="4" height="3" fill="#90b8ff"/>
+      <rect x="1040" y="370" width="5" height="3.5" fill="#a0c0ff"/>
+      <rect x="1155" y="355" width="6" height="3.5" fill="#90b8ff"/>
+      <rect x="1272" y="358" width="5" height="3" fill="#a0c0ff"/>
+    </g>
+
+    <!-- ── Lake / Water ── -->
+    <path d="M0 500 Q360 480 720 492 Q1080 504 1440 488 L1440 900 L0 900Z"
+          fill="url(#lake-grad)"/>
+
+    <!-- Water reflection glow -->
+    <rect x="0" y="500" width="1440" height="400" fill="url(#water-glow)"/>
+
+    <!-- City light reflection on water (vertical streaks, blurred) -->
+    <g filter="url(#bridge-glow)" opacity="0.55">
+      <!-- Amber building reflections -->
+      <rect x="1020" y="500" width="12" height="180" fill="#c06020"/>
+      <rect x="1052" y="500" width="8" height="165" fill="#d07028"/>
+      <rect x="1138" y="500" width="14" height="195" fill="#b85818"/>
+      <rect x="1170" y="500" width="8" height="170" fill="#c86020"/>
+      <rect x="1260" y="500" width="10" height="180" fill="#c06020"/>
+      <rect x="1380" y="500" width="16" height="200" fill="#b85018"/>
+      <rect x="930" y="500" width="8" height="150" fill="#a04818"/>
+      <rect x="740" y="500" width="6" height="130" fill="#904010"/>
+      <!-- Blue accent reflections -->
+      <rect x="948" y="500" width="5" height="130" fill="#4080c0" opacity="0.6"/>
+      <rect x="1165" y="500" width="5" height="140" fill="#5090d0" opacity="0.5"/>
+    </g>
+
+    <!-- Water surface shimmer (lighter ripple on top) -->
+    <linearGradient id="shimmer-h" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a3565" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0a1830" stop-opacity="0"/>
+    </linearGradient>
+    <rect x="0" y="500" width="1440" height="80" fill="url(#shimmer-h)"/>
+
+    <!-- ── Bridge ── subtle suspension structure -->
+    <!-- Bridge road surface -->
+    <rect x="580" y="488" width="500" height="12" fill="#0d1e35" opacity="0.9"/>
+    <!-- Bridge cables -->
+    <g stroke="#1a3060" stroke-width="0.8" opacity="0.55">
+      <!-- Left tower -->
+      <line x1="680" y1="430" x2="680" y2="500"/><line x1="680" y1="430" x2="580" y2="496"/>
+      <line x1="680" y1="430" x2="620" y2="496"/><line x1="680" y1="430" x2="650" y2="496"/>
+      <line x1="680" y1="430" x2="680" y2="500"/>
+      <!-- Right tower -->
+      <line x1="980" y1="428" x2="980" y2="500"/><line x1="980" y1="428" x2="1080" y2="496"/>
+      <line x1="980" y1="428" x2="1040" y2="496"/><line x1="980" y1="428" x2="1010" y2="496"/>
+    </g>
+    <!-- Tower lights (amber dots) -->
+    <g fill="#ffcc40" opacity="0.9" filter="url(#cs-glow)">
+      <circle cx="680" cy="430" r="3"/><circle cx="980" cy="428" r="3"/>
+    </g>
+    <!-- Bridge lights reflection -->
+    <g filter="url(#cs-glow)" opacity="0.4">
+      <line x1="580" y1="500" x2="1080" y2="500" stroke="#c06020" stroke-width="2"/>
+    </g>
+
+    <!-- ── Foreground tree silhouettes ── -->
+    <g fill="#020810" opacity="0.98">
+      <!-- Left cluster -->
+      <path d="M0 900 L0 680 L25 640 L50 660 L75 620 L100 645 L125 608 L150 638 L175 600 L200 635 L225 595 L250 630 L275 592 L300 628 L320 588 L340 620 L355 600 L370 650 L380 900Z"/>
+      <!-- Right edge -->
+      <path d="M1440 900 L1440 700 L1420 680 L1400 698 L1380 672 L1360 692 L1440 700Z"/>
+    </g>
+
+    <!-- Overall dark vignette at edges -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="55%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#010305" stop-opacity="0.75"/>
+    </radialGradient>
+    <rect width="1440" height="900" fill="url(#vignette)"/>
+
+  </g>
+</svg>
