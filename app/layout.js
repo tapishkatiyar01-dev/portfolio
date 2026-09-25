@@ -1,6 +1,6 @@
-// D:\Project_2026\portfolio\app\layout.js
 import './globals.css';
 import { getPortfolioData } from '@/lib/portfolioRepository';
+import { buildPersonJsonLd, buildPortfolioMetadata } from '@/lib/siteMetadata';
 
 export const viewport = {
   width: 'device-width',
@@ -10,17 +10,20 @@ export const viewport = {
 
 export async function generateMetadata() {
   const data = await getPortfolioData();
-  return {
-    title: `${data.personal.name} - ${data.personal.designation}`,
-    description: data.personal.summary,
-  };
+  return buildPortfolioMetadata(data);
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const data = await getPortfolioData();
+  const jsonLd = buildPersonJsonLd(data);
+
   return (
     <html lang="en">
       <body className="antialiased">
-        {/* Premium Signal Folio: ink/mist private-press portfolio — Syne + Figtree, chartreuse/cobalt signal, full-bleed architectural hero. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>
